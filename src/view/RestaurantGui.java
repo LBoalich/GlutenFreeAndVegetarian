@@ -1,14 +1,15 @@
 package view;
 
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.TextAlignment;
 import model.Restaurant;
+import model.RestaurantsData;
 
 public class RestaurantGui {
     private Restaurant restaurant;
     private BorderPane paneRestaurant;
+    private Label lbRestaurant;
 
     public RestaurantGui() {
         restaurant();
@@ -17,10 +18,21 @@ public class RestaurantGui {
     public RestaurantGui(Restaurant restaurant) {
         this.restaurant = restaurant;
         restaurant();
+        this.lbRestaurant.setText(this.restaurant.toString());
     }
 
     public BorderPane getRestaurantPane() {
         return this.paneRestaurant;
+    }
+
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
+        this.lbRestaurant.setText(restaurant.toString());
+    }
+
+    public void setRestaurant(String name) {
+        this.restaurant = RestaurantsData.restaurants.nameMatch(name);
+        setRestaurant(restaurant);
     }
 
     private void restaurant() {
@@ -28,13 +40,10 @@ public class RestaurantGui {
         paneRestaurant = new BorderPane();
 
         // Create restaurant label
-        Label lbRestaurant = new Label(restaurant.toString());
+        lbRestaurant = new Label();
         // Set text alaign
         lbRestaurant.setTextAlignment(TextAlignment.CENTER);
         // Add to pane
         paneRestaurant.setCenter(lbRestaurant);
-
-        // Get back button
-        Button btBack = Results.btBack;
     }
 }

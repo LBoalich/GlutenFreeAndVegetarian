@@ -42,6 +42,8 @@ public class Search {
         ObservableList<String> namesList = FXCollections.observableArrayList(restaurants.getNames());
         // Create combo box to choose a restaurant
         this.cboSearch = new ComboBox<>(namesList);
+        // Add cbo event handler
+        cboSearch.setOnAction(e -> cboHandler());
 
         // Create combo box label
         Label lbSearch = new Label("Search", cboSearch);
@@ -51,5 +53,16 @@ public class Search {
 
         // Add search cbo to pane
         paneSearch.getChildren().add(lbSearch);
+    }
+
+    private void cboHandler() {
+        // Get user selection
+        String name = cboSearch.getValue();
+        // Update restaurant gui
+        App.restaurantGUI.setRestaurant(name);
+        // Update main page
+        App.mainPane.setCenter(App.restaurantGUI.getRestaurantPane());
+        // Make back button visible
+        App.btBack.setVisible(true);
     }
 }

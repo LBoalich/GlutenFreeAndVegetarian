@@ -3,6 +3,7 @@ package view;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -11,6 +12,8 @@ import javafx.stage.Stage;
 
 public class App extends Application {
     public static BorderPane mainPane = new BorderPane();
+    public static Button btBack = new Button("Back");
+    public static RestaurantGui restaurantGUI = new RestaurantGui();
 
     // Override the start method in the Application class
     @Override
@@ -39,6 +42,11 @@ public class App extends Application {
 
         // Add vbox to border pane
         mainPane.setCenter(vboxCenter);
+
+        // Add back button to border pane
+        mainPane.setBottom(btBack);
+        // Make back button invisible
+        btBack.setVisible(false);
 
         // Create a scene and place it in the stage
         Scene scene = new Scene(mainPane);

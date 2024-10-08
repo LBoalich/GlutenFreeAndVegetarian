@@ -1,10 +1,7 @@
 package view;
 
 import model.Restaurant;
-import model.RestaurantsData;
-
 import java.util.ArrayList;
-
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.control.Button;
@@ -83,31 +80,20 @@ public class Results {
             fpResults.getChildren().add(lbNoResults);
         }
 
-        // Create back button
-        btBack = new Button("Back");
-        // Add to main pane
-        App.mainPane.setBottom(btBack);
-
         // Add label and fp to vbox
         paneResults.getChildren().addAll(lbResults, fpResults);
         // Center align
         paneResults.setAlignment(Pos.CENTER);
-    }
-    
-    public void visibility() {
-        if (paneResults.isVisible()) {
-            paneResults.setVisible(false);
-        }
-        else {
-            paneResults.setVisible(true);
-        }
+
+        // Make back button visible
+        App.btBack.setVisible(true);
     }
 
     private void clickHandler(String name) {
-        // Get restaurant
-        Restaurant restaurant = RestaurantsData.restaurants.nameMatch(name);
+        // Update restaurant gui
+        App.restaurantGUI.setRestaurant(name);
         // Add pane to main pane
-        App.mainPane.setCenter(new RestaurantGui(restaurant).getRestaurantPane());
+        App.mainPane.setCenter(App.restaurantGUI.getRestaurantPane());
     }
 
     private void mouseEnterHandler() {
