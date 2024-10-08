@@ -12,17 +12,17 @@
         },
         {
             "type": "java",
-            "name": "App",
+            "name": "Test",
             "request": "launch",
-            "vmArgs": "--module-path /Users/leahboalich/Documents/javafx-sdk-17.0.12/lib --add-modules javafx.controls,javafx.fxml",
-            "mainClass": "App",
+            "mainClass": "model.Test",
             "projectName": "GlutenFreeAndVegetarian_1f98d6f7"
         },
         {
             "type": "java",
-            "name": "Test",
+            "name": "App",
             "request": "launch",
-            "mainClass": "Test",
+            "vmArgs": "--module-path /Users/leahboalich/Documents/javafx-sdk-17.0.12/lib --add-modules javafx.controls,javafx.fxml",
+            "mainClass": "view.App",
             "projectName": "GlutenFreeAndVegetarian_1f98d6f7"
         }
     ]
