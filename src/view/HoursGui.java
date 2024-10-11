@@ -8,9 +8,20 @@ import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import model.Hours;
+import model.HoursNoMidDayClose;
+import model.Restaurant;
+import model.RestaurantsData;
+import java.util.ArrayList;
 
+// Class needs updated to track hours for each day of the week
 public class HoursGui {
     private VBox paneHours;
+    private ComboBox<String> cboOpen;
+    private ComboBox<String> cboClose;
+    private String open;
+    private String close;
+    private ArrayList<Restaurant> hoursMatches = new ArrayList<>();
 
     public HoursGui() {
         hours();
@@ -18,6 +29,23 @@ public class HoursGui {
 
     public VBox getHoursPane() {
         return this.paneHours;
+    }
+
+    public ArrayList<Restaurant> getHoursMatches() {
+        // Clear previous matches
+        hoursMatches.clear();
+        // If selections made
+        if (!cboOpen.getSelectionModel().isEmpty() && ! cboClose.getSelectionModel().isEmpty()) {
+            // Create hours object
+            Hours hours = new HoursNoMidDayClose(open, close, open, close, open, close, open, close, open, close, open, close, open, close);
+
+            // Test
+            System.out.println(hours.toString());
+
+            // Get matches for selected open and close hours
+            hoursMatches = RestaurantsData.restaurants.hoursMatch(hours);
+        }
+        return this.hoursMatches;
     }
 
     private void hours() {
@@ -39,8 +67,11 @@ public class HoursGui {
         ObservableList<String> closeHoursList = FXCollections.observableArrayList(hoursArray);
        
         // Create open and close combo boxes 
-        ComboBox<String> cboOpen = new ComboBox<>(openHoursList);
-        ComboBox<String> cboClose = new ComboBox<>(closeHoursList);
+        cboOpen = new ComboBox<>(openHoursList);
+        cboClose = new ComboBox<>(closeHoursList);
+        // Add event handlers
+        cboOpen.setOnAction(e -> cboOpenHandler());
+        cboClose.setOnAction(e -> cboCloseHandler());
 
         // Create labels for combos
         Label lbOpen = new Label("Open From", cboOpen);
@@ -58,5 +89,13 @@ public class HoursGui {
         paneHours.getChildren().addAll(lbHours, hboxRange);
         // Set alignment
         paneHours.setAlignment(Pos.CENTER);
+    }
+
+    private void cboOpenHandler() {
+        this.open = cboOpen.getValue();
+    }
+
+    private void cboCloseHandler() {
+        this.close = cboClose.getValue();
     }
 }

@@ -55,7 +55,7 @@ public class Filter {
         // Set preferred width
         btCategory.setPrefWidth(100);
         // Add event handler
-        btCategory.setOnAction(e -> handler(refine.getCategoryPane()));
+        btCategory.setOnAction(e -> handler(App.category.getCategoryPane()));
         
         // Create neighborhood button
         btNieghborhood = new Button("Neighborhood");
@@ -64,7 +64,7 @@ public class Filter {
         // Set preferred width
         btNieghborhood.setPrefWidth(100);
         // Add event handler
-        btNieghborhood.setOnAction(e -> handler(refine.getNeighborhoodPane()));
+        btNieghborhood.setOnAction(e -> handler(App.neighborhood.getNeighborhoodPane()));
 
         // Create price button
         btPrice = new Button("Price");
@@ -73,7 +73,7 @@ public class Filter {
         // Set preferred width
         btPrice.setPrefWidth(100);
         // Set event handler
-        btPrice.setOnAction(e -> handler(refine.getPricePane()));
+        btPrice.setOnAction(e -> handler(App.price.getPricePane()));
 
         // Create hours button
         btHours = new Button("Hours");
@@ -82,7 +82,7 @@ public class Filter {
         // Set preferred width
         btHours.setPrefWidth(100);
         // Set event handler
-        btHours.setOnAction(e -> handler(refine.getHoursPane()));
+        btHours.setOnAction(e -> handler(App.hours.getHoursPane()));
 
         // Create specials button
         btSpecials = new Button("Specials");
@@ -91,7 +91,7 @@ public class Filter {
         // Set preferred width
         btSpecials.setPrefWidth(100);
         // Set event handler
-        btSpecials.setOnAction(e -> handler(refine.getSpecialsPane()));
+        btSpecials.setOnAction(e -> handler(App.specials.getSpecialsPane()));
 
         //Add flow pane to vbox
         paneFilter.getChildren().add(flow);

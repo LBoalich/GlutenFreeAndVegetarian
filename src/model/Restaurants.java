@@ -71,6 +71,9 @@ public class Restaurants {
 			    categoryMatch.add(restaurant);
             }  
         }
+        if (categories.isEmpty()) {
+            categoryMatch.add(null);
+        }
         return categoryMatch;
     }
 
@@ -83,6 +86,9 @@ public class Restaurants {
 			    neighborhoodMatch.add(restaurant);
             }
 	    }
+        if (neighborhoodMatch.isEmpty()) {
+            neighborhoodMatch.add(null);
+        }
 	    return neighborhoodMatch;
     }
 
@@ -95,6 +101,9 @@ public class Restaurants {
 			    priceRangeMatch.add(restaurant);
             }
 	    }
+        if (priceRangeMatch.isEmpty()) {
+            priceRangeMatch.add(null);
+        }
         return priceRangeMatch;
     }
 
@@ -106,7 +115,10 @@ public class Restaurants {
 		    if (restaurant.getHasSpecials()) {
 			    hasSpecials.add(restaurant);
             }
-	    }   
+	    } 
+        if (hasSpecials.isEmpty()) {
+            hasSpecials.add(null);
+        }  
 	    return hasSpecials;
     }
 
@@ -135,6 +147,10 @@ public class Restaurants {
         // Add midDayCloseHoursMatch to hourMatch
         hoursMatch.addAll(midDayCloseHoursMatch);
         // Return the restaurants that are open during the given time frames
+        // If no mathces add null
+        if (hoursMatch.isEmpty()) {
+            hoursMatch.add(null);
+        }
 	    return hoursMatch;
     }
 

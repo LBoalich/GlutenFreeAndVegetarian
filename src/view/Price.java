@@ -9,16 +9,36 @@ import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import model.Restaurant;
+import model.RestaurantsData;
 
 public class Price {
     private VBox panePrice;
+   
+    private ComboBox<Integer> cboLow;
+    private ComboBox<Integer> cboHigh;
+    private int selectedLowPrice;
+    private int selectedHighPrice;
+    private ArrayList<Restaurant> priceMatches = new ArrayList<>();
 
     public Price() {
         price();
     }
 
-    public VBox getPricePance() {
+    public VBox getPricePane() {
         return this.panePrice;
+    }
+
+    public ArrayList<Restaurant> getPriceMatches() {
+        // Clear previous matches
+        priceMatches.clear();
+        // If selections made
+        if (!cboLow.getSelectionModel().isEmpty() && !cboHigh.getSelectionModel().isEmpty()) {
+            // Find price matches
+            priceMatches = RestaurantsData.restaurants.priceRangeMatch(selectedLowPrice, selectedHighPrice);
+        }
+        // Return matches
+        return this.priceMatches;
     }
 
     private void price() {
@@ -31,7 +51,7 @@ public class Price {
         // Create range hbox
         HBox hboxRange = new HBox(20);
 
-        /* Create low and high price combo boxes */
+         /* Create low and high price combo boxes */
         // Create list of price ranges
         ArrayList<Integer> priceArray = new ArrayList<>();
         // Populate price list
@@ -45,9 +65,13 @@ public class Price {
         // Create observable list for high
         ObservableList<Integer> priceListHigh = FXCollections.observableList(priceArray);
         // Create low combo
-        ComboBox<Integer> cboLow = new ComboBox<>(priceListLow);
+        cboLow = new ComboBox<>(priceListLow);
+        // Add low combo event handler
+        cboLow.setOnAction(e -> cboLowHandler());
         // Create high combo
-        ComboBox<Integer> cboHigh = new ComboBox<>(priceListHigh);
+        cboHigh = new ComboBox<>(priceListHigh);
+        // Add high combo event handler
+        cboHigh.setOnAction(e -> cboHighHandler());
 
         /* Add combos to labels */
         // Create low label
@@ -67,5 +91,15 @@ public class Price {
         panePrice.getChildren().addAll(lbPrice, hboxRange);
         // Center align
         panePrice.setAlignment(Pos.CENTER);
+    }
+
+    private void cboLowHandler() {
+        // Set selected low price
+        selectedLowPrice = cboLow.getValue();
+    }
+
+    private void cboHighHandler() {
+        // Set selected high price
+        selectedHighPrice = cboHigh.getValue();
     }
 }

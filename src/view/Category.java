@@ -1,7 +1,9 @@
 package view;
 
+import model.Restaurant;
 import model.Restaurants;
 import model.RestaurantsData;
+import java.util.ArrayList;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -10,6 +12,8 @@ import javafx.scene.layout.VBox;
 
 public class Category {
     private VBox paneCategory;
+    private ArrayList<String> selectedCategories = new ArrayList<>();
+    private ArrayList<Restaurant> categoryMatches = new ArrayList<>();
 
     public Category() {
         category();
@@ -17,6 +21,10 @@ public class Category {
 
     public VBox getCategoryPane() {
         return this.paneCategory;
+    }
+
+    public ArrayList<Restaurant> getCategoryMatches() {
+        return this.categoryMatches;
     }
 
     private void category() {
@@ -36,6 +44,8 @@ public class Category {
             Button btCategory = new Button(category);
             btCategory.setPrefWidth(100);
             fpCategory.getChildren().add(btCategory);
+            // Add handler
+            btCategory.setOnAction(e -> btCategoryHandler(category));
         }
         // Center align buttons
         fpCategory.setAlignment(Pos.CENTER);
@@ -47,5 +57,22 @@ public class Category {
         paneCategory.getChildren().addAll(lbCateogry, fpCategory);
         // Center align children
         paneCategory.setAlignment(Pos.CENTER);
+    }
+
+    // Cateogry button event handler
+    private void btCategoryHandler(String categtory) {
+        if (selectedCategories.contains(categtory)) {
+            selectedCategories.remove(categtory);
+        }
+        else {
+            selectedCategories.add(categtory);
+        }
+        // Clear previous matches
+        categoryMatches.clear();
+        // If selections not empty
+        if (!selectedCategories.isEmpty()) {
+            // Find new matches
+            categoryMatches.addAll(RestaurantsData.restaurants.categoryMatch(selectedCategories));
+        }
     }
 }

@@ -13,6 +13,11 @@ import javafx.stage.Stage;
 public class App extends Application {
     public static BorderPane mainPane = new BorderPane();
     public static Button btBack = new Button("Back");
+    public static Category category = new Category();
+    public static Neighborhood neighborhood = new Neighborhood();
+    public static Price price = new Price();
+    public static HoursGui hours = new HoursGui();
+    public static SpecialsGui specials = new SpecialsGui();
     public static RestaurantGui restaurantGUI = new RestaurantGui();
 
     // Override the start method in the Application class

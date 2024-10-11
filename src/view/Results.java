@@ -1,7 +1,8 @@
 package view;
 
 import model.Restaurant;
-import java.util.ArrayList;
+import java.util.TreeSet;
+
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.control.Button;
@@ -10,7 +11,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 
 public class Results {
-    private ArrayList<Restaurant> results;
+    private TreeSet<Restaurant> results;
     private VBox paneResults;
     public static Button btBack;
 
@@ -18,8 +19,8 @@ public class Results {
         results();
     }
 
-    public Results(ArrayList<Restaurant> results) {
-        this.results = results;
+    public Results(TreeSet<Restaurant> resultsTree) {
+        this.results = resultsTree;
         results();
     }
 
@@ -43,7 +44,7 @@ public class Results {
         // Center algin
         fpResults.setAlignment(Pos.CENTER);
         // Populate flow pane
-        if (!results.isEmpty()) {
+        if (!results.contains(null)) {
             for (Restaurant restaurant : results) {
                 // Get restaurant info
                 String name = restaurant.getName();

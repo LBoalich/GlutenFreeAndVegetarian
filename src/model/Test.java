@@ -110,6 +110,16 @@ public class Test {
         System.out.println("The filter hours are:");
         System.out.println(filterHours.toString());
 
+        /* Test hours match 2 */
+        System.out.println("Test hours match 2");
+        //Create open and close hours
+        String open = "5:30 PM";
+        String close = "8:00 PM";
+        // Create hours object
+        Hours hours = new HoursNoMidDayClose(open, close, open, close, open, close, open, close, open, close, open, close, open, close);
+        System.out.println("The filter hours are:");
+        System.out.println(hours.toString());
+
         // Find the matching days
         ArrayList<Restaurant> daysOpenMatch = restaurants.getOpenDaysMatch(filterHours);
         System.out.println("Open days Match");
@@ -124,13 +134,19 @@ public class Test {
             System.out.println(restaurant.toString());
         }
 
-        // Find matching hours including mid day close
+        // Find restaurants that match hours
         ArrayList<Restaurant> hoursMidDayCloseMatch = restaurants.hoursMatch(filterHours);
         System.out.println("Hours match given mid day close");
         for (Restaurant restaurant : hoursMidDayCloseMatch) {
             System.out.println(restaurant.toString());
         }
-        
+
+        // Find all matching hours
+        ArrayList<Restaurant> hoursMatch = restaurants.hoursMatch(hours);
+        System.out.println("Hours match test 2");
+        for (Restaurant restaurant : hoursMatch) {
+            System.out.println(restaurant.getName());
+        }
     }
 
     /* Method to make sanctuary bistro */
