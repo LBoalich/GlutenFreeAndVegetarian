@@ -37,21 +37,15 @@ public class Filter {
         // Add filter label to grid
         paneFilter.getChildren().add(label);
 
-        //Create flow pane
-        FlowPane flow = new FlowPane();
-        // Set flow pane preferred width
-        flow.setMaxWidth(350);
+        //Create vbox
+        VBox vbox = new VBox(10);
         // Center alignment
-        flow.setAlignment(Pos.CENTER);
-        // Set hgap
-        flow.setHgap(15);
-        // Set vgap
-        flow.setVgap(10);
+        vbox.setAlignment(Pos.CENTER);
 
         // Create category button
         btCategory = new Button("Category");
         // Add category button to grid
-        flow.getChildren().add(btCategory);
+        vbox.getChildren().add(btCategory);
         // Set preferred width
         btCategory.setPrefWidth(100);
         // Add event handler
@@ -60,7 +54,7 @@ public class Filter {
         // Create neighborhood button
         btNieghborhood = new Button("Neighborhood");
         // Add neighborhood button to grid
-        flow.getChildren().add(btNieghborhood);
+        vbox.getChildren().add(btNieghborhood);
         // Set preferred width
         btNieghborhood.setPrefWidth(100);
         // Add event handler
@@ -69,7 +63,7 @@ public class Filter {
         // Create price button
         btPrice = new Button("Price");
         // Add price button to grid
-        flow.getChildren().add(btPrice);
+        vbox.getChildren().add(btPrice);
         // Set preferred width
         btPrice.setPrefWidth(100);
         // Set event handler
@@ -78,7 +72,7 @@ public class Filter {
         // Create hours button
         btHours = new Button("Hours");
         // Add hours button to grid
-        flow.getChildren().add(btHours);
+        vbox.getChildren().add(btHours);
         // Set preferred width
         btHours.setPrefWidth(100);
         // Set event handler
@@ -87,14 +81,14 @@ public class Filter {
         // Create specials button
         btSpecials = new Button("Specials");
         // Add specials button to grid
-        flow.getChildren().add(btSpecials);
+        vbox.getChildren().add(btSpecials);
         // Set preferred width
         btSpecials.setPrefWidth(100);
         // Set event handler
         btSpecials.setOnAction(e -> handler(App.specials.getSpecialsPane()));
 
         //Add flow pane to vbox
-        paneFilter.getChildren().add(flow);
+        paneFilter.getChildren().add(vbox);
     }
 
     private void handler(Pane pane) {

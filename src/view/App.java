@@ -31,8 +31,8 @@ public class App extends Application {
         // Add search to border pane
         mainPane.setTop(paneSearch);
 
-        // Create vbox to hold center items for border pane
-        VBox vboxCenter = new VBox(30);
+        // Create hbox to hold center items for border pane
+        HBox hboxCenter = new HBox(30);
 
         // Create refine
         Refine refine = new Refine();
@@ -43,10 +43,10 @@ public class App extends Application {
         Pane paneFilter = new Filter(refine).getFilterPane();
         
         // Add filter and refine to vbox
-        vboxCenter.getChildren().addAll(paneFilter, paneRefine);
+        hboxCenter.getChildren().addAll(paneFilter, paneRefine);
 
         // Add vbox to border pane
-        mainPane.setCenter(vboxCenter);
+        mainPane.setCenter(hboxCenter);
 
         // Add back button to border pane
         mainPane.setBottom(btBack);
