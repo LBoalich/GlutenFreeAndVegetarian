@@ -10,6 +10,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 
 public class Search {
     private HBox paneSearch;
@@ -60,9 +61,9 @@ public class Search {
         String name = cboSearch.getValue();
         // Update restaurant gui
         App.restaurantGUI.setRestaurant(name);
+        // Add current pane to back button stack
+        App.btBack.addPane((Pane) App.mainPane.getCenter());
         // Update main page
         App.mainPane.setCenter(App.restaurantGUI.getRestaurantPane());
-        // Make back button visible
-        App.btBack.setVisible(true);
     }
 }

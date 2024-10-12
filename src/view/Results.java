@@ -8,6 +8,7 @@ import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 public class Results {
@@ -85,14 +86,13 @@ public class Results {
         paneResults.getChildren().addAll(lbResults, fpResults);
         // Center align
         paneResults.setAlignment(Pos.CENTER);
-
-        // Make back button visible
-        App.btBack.setVisible(true);
     }
 
     private void clickHandler(String name) {
         // Update restaurant gui
         App.restaurantGUI.setRestaurant(name);
+        // Add current pane to back button stack
+        App.btBack.addPane((Pane) App.mainPane.getCenter());
         // Add pane to main pane
         App.mainPane.setCenter(App.restaurantGUI.getRestaurantPane());
     }

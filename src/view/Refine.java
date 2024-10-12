@@ -187,7 +187,9 @@ public class Refine {
     private void resultsHandler() {
         // Set results
         setResultsTree();
+        // Add current pane to back button stack
+        App.btBack.addPane((Pane) App.mainPane.getCenter());
         // Add results to main page and remove filer and refine
         App.mainPane.setCenter(new Results(resultsTree).getResultsPane());
-    }
+    } 
 }

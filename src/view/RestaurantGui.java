@@ -38,7 +38,6 @@ public class RestaurantGui {
     private void restaurant() {
         // Create border pane
         paneRestaurant = new BorderPane();
-
         // Create restaurant label
         lbRestaurant = new Label();
         // Set text alaign

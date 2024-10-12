@@ -3,7 +3,6 @@ package view;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -11,7 +10,7 @@ import javafx.stage.Stage;
 
 public class App extends Application {
     public static BorderPane mainPane = new BorderPane();
-    public static Button btBack = new Button("Back");
+    public static Back btBack = new Back();
     public static Category category = new Category();
     public static Neighborhood neighborhood = new Neighborhood();
     public static Price price = new Price();
@@ -48,9 +47,7 @@ public class App extends Application {
         mainPane.setCenter(hboxCenter);
 
         // Add back button to border pane
-        mainPane.setBottom(btBack);
-        // Make back button invisible
-        btBack.setVisible(false);
+        mainPane.setBottom(btBack.getBackButton());
 
         // Create a scene and place it in the stage
         Scene scene = new Scene(mainPane);
