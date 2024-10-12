@@ -49,7 +49,7 @@ public class Search {
         Label lbSearch = new Label("Search", cboSearch);
         lbSearch.setContentDisplay(ContentDisplay.RIGHT);
         // Add padding
-        lbSearch.setPadding(new Insets(0, 20, 30, 20));
+        lbSearch.setPadding(new Insets(0, 20, 20, 20));
 
         // Add search cbo to pane
         paneSearch.getChildren().add(lbSearch);

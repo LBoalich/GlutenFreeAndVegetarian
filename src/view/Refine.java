@@ -52,7 +52,7 @@ public class Refine {
         // Create refine label
         Label lbRefine = new Label("Refine");
         // Set padding
-        lbRefine.setPadding(new Insets(20));
+        lbRefine.setPadding(new Insets(10));
 
         // Create refine button
         Button btRefine = new Button("Results");
@@ -71,6 +71,8 @@ public class Refine {
         paneRefine.setBottom(hboxButton);
         // Center align
         BorderPane.setAlignment(lbRefine, Pos.CENTER);
+        // Set min sizde
+        paneRefine.setMinWidth(800);
 
         // Set visibility to false
         paneRefine.setVisible(false);

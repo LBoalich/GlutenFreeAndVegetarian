@@ -112,11 +112,15 @@ public class Test {
 
         /* Test hours match 2 */
         System.out.println("Test hours match 2");
-        //Create open and close hours
-        String open = "5:30 PM";
-        String close = "8:00 PM";
         // Create hours object
-        Hours hours = new HoursNoMidDayClose(open, close, open, close, open, close, open, close, open, close, open, close, open, close);
+        Hours hours = new HoursNoMidDayClose();
+        hours.setSunday(false);
+        hours.setMonday(false);
+        hours.setTuesday(false);
+        hours.setWednesday(false);
+        hours.setThursday(false);
+        hours.setFriday(false);
+        hours.setSaturday(false);
         System.out.println("The filter hours are:");
         System.out.println(hours.toString());
 

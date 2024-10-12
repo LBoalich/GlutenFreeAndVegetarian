@@ -7,7 +7,6 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class App extends Application {
@@ -60,8 +59,8 @@ public class App extends Application {
         // Place the scene in the stage
         primaryStage.setScene(scene);
         // Set primary stage min size
-        primaryStage.setMinHeight(750);
-        primaryStage.setMinWidth(600);
+        primaryStage.setMinHeight(775);
+        primaryStage.setMinWidth(900);
         // Display the stage
         primaryStage.show();
     }
