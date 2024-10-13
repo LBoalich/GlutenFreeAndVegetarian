@@ -14,6 +14,9 @@ import model.RestaurantsData;
 
 public class Price {
     private VBox panePrice;
+    private ArrayList<Integer> priceArray; 
+    private ObservableList<Integer> priceListLow;
+    private ObservableList<Integer> priceListHigh;
     private ComboBox<Integer> cboLow;
     private ComboBox<Integer> cboHigh;
     private Integer selectedLowPrice;
@@ -52,7 +55,7 @@ public class Price {
 
          /* Create low and high price combo boxes */
         // Create list of price ranges
-        ArrayList<Integer> priceArray = new ArrayList<>();
+        priceArray = new ArrayList<>();
         // Populate price list
         int i = 5;
         while (i <= 150) {
@@ -60,13 +63,13 @@ public class Price {
             i += 5;
         }
         // Create observable list for low price
-        ObservableList<Integer> priceListLow = FXCollections.observableArrayList(priceArray);
+        priceListLow = FXCollections.observableArrayList(priceArray);
         // Create observable list for high
-        ObservableList<Integer> priceListHigh = FXCollections.observableList(priceArray);
+        priceListHigh = FXCollections.observableArrayList(priceArray);
         // Create low combo
         cboLow = new ComboBox<>(priceListLow);
         // Add low combo event handler
-        cboLow.setOnAction(e -> cboLowHandler());
+        cboLow.setOnAction(e -> cboLowHandler(cboLow.getValue()));
         // Create high combo
         cboHigh = new ComboBox<>(priceListHigh);
         // Add high combo event handler
@@ -92,9 +95,30 @@ public class Price {
         panePrice.setAlignment(Pos.CENTER);
     }
 
-    private void cboLowHandler() {
+    private void cboLowHandler(Integer lowPrice) {
+        // Clear high price observable list
+        priceListHigh.clear();
         // Set selected low price
-        selectedLowPrice = cboLow.getValue();
+        selectedLowPrice = lowPrice;
+        // Get index of selected price
+        int lowIndex = priceArray.indexOf(lowPrice);
+        // If index found
+        if (lowIndex >= 0) {
+            // Create new list high prices adding final so price array doesn't mutate
+            ArrayList<Integer> newHighArray = new ArrayList<>();
+            // Add prices greater than or equal to selection
+            int i = lowIndex;
+            while(i < priceArray.size()) {
+                newHighArray.add(priceArray.get(i));
+                i++;
+            }
+            // Update high price observable list
+            priceListHigh.addAll(newHighArray);
+        }
+        else{
+            // Set high price observable list to all prices
+            priceListHigh.addAll(priceArray);
+        }
     }
 
     private void cboHighHandler() {
