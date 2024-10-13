@@ -50,7 +50,9 @@ public class Results {
         // Center algin
         fpResults.setAlignment(Pos.CENTER);
         // Populate flow pane
+        // If results exist
         if (!results.contains(null) && !results.isEmpty()) {
+            // For each result
             for (Restaurant restaurant : results) {
                 // Get restaurant info
                 String name = restaurant.getName();
@@ -63,7 +65,7 @@ public class Results {
                 Label lbName = new Label(name);
                 Label lbCategory = new Label(category);
                 Label lbNeighborhood = new Label(neighborhood);
-                Label lbPrice = new Label("Price Range: " + Integer.toString(lowPrice) + " to " + Integer.toString(highPrice));
+                Label lbPrice = new Label("Price Range: $" + Integer.toString(lowPrice) + " to $" + Integer.toString(highPrice));
 
                 // Create restaurant hbox
                 VBox vbox = new VBox(5);
@@ -80,6 +82,7 @@ public class Results {
                 fpResults.getChildren().add(vbox);
             }
         }
+        // No matches
         else {
             // Create no results label
             Label lbNoResults = new Label("No Matching Restaurants");

@@ -40,10 +40,13 @@ public class Category {
 
         // Create category flow pane
         FlowPane fpCategory = new FlowPane();
-        // Add cateogry buttons
+        // Add cateogry toggle buttons
         for (String category : RestaurantsData.RESTAURANTS.getCategories()) {
+            // Create toggle button
             ToggleButton btCategory = new ToggleButton(category);
+            // Set width
             btCategory.setPrefWidth(100);
+            // Add to flow pane
             fpCategory.getChildren().add(btCategory);
             // Add handler
             btCategory.setOnAction(e -> btCategoryHandler(category));
@@ -64,10 +67,14 @@ public class Category {
 
     // Cateogry button event handler
     private void btCategoryHandler(String categtory) {
+        // If already selected
         if (selectedCategories.contains(categtory)) {
+            // Remove from selections
             selectedCategories.remove(categtory);
         }
+        // Not previously selected
         else {
+            // Add to selected categories list
             selectedCategories.add(categtory);
         }
         // Clear previous matches
@@ -80,10 +87,13 @@ public class Category {
     }
 
     public void clearCategory() {
+        // Clear selected categories
         this.selectedCategories.clear();
+        // Clear category matches
         this.categoryMatches.clear();
         // Deslect category toggle buttons
         for (ToggleButton btCategory : categoryButtonList) {
+            // Set toggle button to not selected
             btCategory.setSelected(false);
         }     
     }

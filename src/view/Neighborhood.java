@@ -69,10 +69,14 @@ public class Neighborhood {
 
     // Cateogry button event handler
     private void btNeighborhoodHandler(String neighborhood) {
+        // If neighborhood already in selected list
         if (selectedNeighborhoods.contains(neighborhood)) {
+            // Remove from list
             selectedNeighborhoods.remove(neighborhood);
         }
+        // Not in list
         else {
+            // Add to list
             selectedNeighborhoods.add(neighborhood);
         }
         // Clear previous matches
@@ -85,10 +89,13 @@ public class Neighborhood {
     }
 
     public void clearNeighborhood() {
+        // Clear selected neighborhood list
         this.selectedNeighborhoods.clear();
+        // Clear matches
         this.neighborhoodMatches.clear();
         // Deslect toggle buttons
         for (ToggleButton btNeighborhood : neighborhoodButtonList) {
+            // Set toggle button to not selected
             btNeighborhood.setSelected(false);
         }     
     }

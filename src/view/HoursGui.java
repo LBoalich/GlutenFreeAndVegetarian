@@ -8,7 +8,6 @@ import model.Restaurant;
 import model.RestaurantsData;
 import java.util.ArrayList;
 
-// Class needs updated to track hours for each day of the week
 public class HoursGui {
     public static final String[] HOURS_ARRAY = {"12:00 AM", "12:30 AM", "1:00 AM", "1:30 AM", "2:00 AM", "2:30 AM", "3:00 AM", "3:30 AM", "4:00 AM", "4:30 AM", "5:00 AM", "5:30 AM", "6:00 AM", "6:30 AM", "7:00 AM", "7:30 AM", "8:00 AM", "8:30 AM", "9:00 AM", "9:30 AM", "10:00 AM", "10:30 AM", "11:00 AM", "11:30 AM", "12:00 PM", "12:30 PM", "1:00 PM", "1:30 PM", "2:00 PM", "2:30 PM", "3:00 PM", "3:30 PM", "4:00 PM", "4:30 PM", "5:00 PM", "5:30 PM", "6:00 PM", "6:30 PM", "7:00 PM", "7:30 PM", "8:00 PM", "8:30 PM", "9:00 PM", "9:30 PM", "10:00 PM", "10:30 PM", "11:00 PM", "11:30 PM"};
     private VBox paneHours;
@@ -46,22 +45,26 @@ public class HoursGui {
         // Sunday
         // If selections made
         if (sunday.getSundaySelected()) {
+            // Get open and close selections
             String sundayOpen = sunday.getSundayOpen();
             String sundayClose = sunday.getSundayClose();
             // If sunday open or close null get day matches
             if (sundayOpen == null || sundayClose == null) {
+                // Get matches only based on day and add to day match list
                 onlyDayMatch.addAll(RestaurantsData.RESTAURANTS.sundayMatch());
                 // Can't search this day based on hours, set to close to prevent error
                 hours.setSunday(false);
             }
+            // Both open and close selected
             else {
                 //Set sunday hours
                 hours.setSundayOpen(sundayOpen);
                 hours.setSundayClose(sundayClose);
             }
         } 
-        // Set day to closed
+        // Not selected
         else {
+            // Set day to closed
             hours.setSunday(false);
         }
         // Monday
@@ -325,6 +328,7 @@ public class HoursGui {
     }
 
     public void clearHours() {
+        // Clear all days
         this.sunday.clearSunday();
         this.monday.clearMonday();
         this.tuesday.clearTuesday();

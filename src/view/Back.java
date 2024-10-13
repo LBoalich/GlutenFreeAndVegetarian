@@ -28,21 +28,29 @@ public class Back {
     }
 
     private void btBackEventHandler() {
+        // Set main pain center to last viewed pane
         App.mainPane.setCenter(backStack.pop());
+        // Set back button visibility
         btBackVisibility();
     }
 
     private void btBackVisibility() {
+        // If on start pane
         if (backStack.isEmpty()) {
+            // Make back button invisible
             btBack.setVisible(false);
         }
+        // There are previous panes to view
         else {
+            // Make back button visible
             btBack.setVisible(true);
         }
     }
 
     public void addPane(Pane pane) {
+        // Add pane to back stack
         backStack.push(pane);
+        // Set back button visibility
         btBackVisibility();
     }
 }

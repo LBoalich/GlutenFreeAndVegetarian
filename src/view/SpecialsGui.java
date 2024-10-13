@@ -56,7 +56,9 @@ public class SpecialsGui {
     }
 
     public void clearSpecials() {
+        // Set checkbox selcted to false
         this.cbSpecials.selectedProperty().setValue(false);
+        // Clear matches
         specialsMatches.clear();
     }
 }

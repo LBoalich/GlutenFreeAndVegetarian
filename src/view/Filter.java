@@ -101,7 +101,9 @@ public class Filter {
         paneFilter.getChildren().add(vbox);
     }
 
+    // Toggle buttons handler
     private void handler(Pane pane) {
+        // Toggles pane visibility
         App.refine.toggle(pane);
     }
 

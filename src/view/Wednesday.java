@@ -103,23 +103,31 @@ public class Wednesday {
     }
 
     private void cboWednesdayCloseHandler() {
+        // Get selected close time
         this.wednesdayClose = cboWednesdayClose.getValue();
     }
 
     private void cbWednesdayHandler() {
+        // Day selected
         if (cbWednesday.isSelected()) {
+            // Get selected times
             this.wednesdayOpen = cboWednesdayOpen.getValue();
             this.wednesdayClose = cboWednesdayClose.getValue();
         }
+        // Day not selected
         else {
+            // Clear data
             this.clearWednesday();
         }
     }
 
     public void clearWednesday() {
+        // Set checkbox to not selected
         this.cbWednesday.selectedProperty().setValue(false);
+        // Clear comboboxes
         this.cboWednesdayOpen.getSelectionModel().clearSelection();
         this.cboWednesdayClose.getSelectionModel().clearSelection();
+        // Clear previous selections
         this.wednesdayOpen = this.cboWednesdayOpen.getValue();
         this.wednesdayClose = this.cboWednesdayClose.getValue();
     }

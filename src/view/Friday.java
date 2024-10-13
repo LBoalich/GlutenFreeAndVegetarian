@@ -58,6 +58,7 @@ public class Friday {
 
         // Create Friday checkbox
         cbFriday = new CheckBox("Friday");
+        // Set width
         cbFriday.setMinWidth(100);
         // Add handler
         cbFriday.setOnAction(e -> cbFridayHandler());
@@ -87,14 +88,17 @@ public class Friday {
         this.fridayOpen = open;
         // Find index of selected time
         int openIndex = allHours.indexOf(open);
+        // When index in range
         if (openIndex >= 0) {
             // Create new list for close
             ArrayList<String> newCloseList = new ArrayList<>();
+            // Add hours greater than and equal to open
             newCloseList.addAll(allHours.subList(openIndex, allHours.size()));
             // Update close observable list to only keep new times
             fridayCloseHoursList.clear();
             fridayCloseHoursList.addAll(newCloseList);
         }
+        // No selection made or cleared
         else {
             // Set close hours to all hours
             fridayCloseHoursList.clear();
@@ -107,19 +111,26 @@ public class Friday {
     }
 
     private void cbFridayHandler() {
+        // If checkbox selected
         if (cbFriday.isSelected()) {
+            // Set selected hours
             this.fridayOpen = cboFridayOpen.getValue();
             this.fridayClose = cboFridayClose.getValue();
         }
+        // When checkbox deselected
         else {
+            // Clear all values
             this.clearFriday();
         }
     }
 
     public void clearFriday() {
+        // Set checkbox selction to false
         this.cbFriday.selectedProperty().setValue(false);
+        // Clear combo boxes
         this.cboFridayOpen.getSelectionModel().clearSelection();
         this.cboFridayClose.getSelectionModel().clearSelection();
+        // Clear previous selections
         this.fridayOpen = this.cboFridayOpen.getValue();
         this.fridayClose = this.cboFridayClose.getValue();
     }

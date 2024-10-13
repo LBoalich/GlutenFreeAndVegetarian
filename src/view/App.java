@@ -8,6 +8,7 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 public class App extends Application {
+    // Create guis that are used by other classes
     public static BorderPane mainPane = new BorderPane();
     public static Search search = new Search();
     public static Clear btClear = new Clear();

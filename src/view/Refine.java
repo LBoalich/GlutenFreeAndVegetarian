@@ -50,37 +50,57 @@ public class Refine {
         ArrayList<ArrayList<Restaurant>> checkForMatches = new ArrayList<>();
         /* For the filters the user selected, get mathces and add to check for matches array. */
         // Get category matches
+        // If category selected
         if (App.filter.isCategorySelected()) {
+            // Get category matched and add to new list
             categoryMatches.addAll(App.category.getCategoryMatches());
+            // If matches not empty
             if (!categoryMatches.isEmpty()) {
+                // Add match list to check for matches
                 checkForMatches.add(categoryMatches);
             }
         }
         // Get neighborhood matches
+        // If neighborhood selected
         if (App.filter.isNeighborhoodSelected()) {
+            // Get matches and add to neighborhood match list
             neighborhoodMatches.addAll(App.neighborhood.getNeighborhoodMatches());
+            // If list not empty
             if (!neighborhoodMatches.isEmpty()) {
+                // Add list to check for matches
                 checkForMatches.add(neighborhoodMatches);
             }
         }
         // Get price matches
+        // If price selected
         if (App.filter.isPriceSelected()) {
+            // Get price matches and add to price match list
             priceMatches.addAll(App.price.getPriceMatches());
+            // If list not empty
             if (!priceMatches.isEmpty()) {
+                // Add to check for matches list
                 checkForMatches.add(priceMatches);
             }
         }
         // Get hour matches
+        // If hours selected
         if (App.filter.isHoursSelected()) {
+            // Get hour matches and add to hour list
             hourMatches.addAll(App.hours.getHoursMatches());
+            // If hour list not empty
             if (!hourMatches.isEmpty()) {
+                // Add to check for matches list
                 checkForMatches.add(hourMatches);
             }
         }
         // Get specials matches
+        // If specials selected
         if (App.filter.isSpecialsSelected()) {
+            // Get specials matches and add to specials list
             specialsMatches.addAll(App.specials.getSpecialsMatches());
+            // If list not empty
             if (!specialsMatches.isEmpty()) {
+                // Add to check for matches
                 checkForMatches.add(specialsMatches);
             }
         }
@@ -106,6 +126,7 @@ public class Refine {
             }
             return;
         }
+        // More than one catgory selected
         else {
             // Loop through match arrays and retain only common restaurants
             for (int i = 1; i < checkForMatches.size(); i++) {
@@ -116,7 +137,9 @@ public class Refine {
         if (temp.isEmpty()) {
             resultsTree.add(null);
         }
+        // Temp not empty so matches exist
         else {
+            // Add all matches to results
             for (Restaurant restaurant : temp) {
                 resultsTree.add(restaurant);
             }
@@ -162,20 +185,29 @@ public class Refine {
     }
 
     public void toggle(Pane pane) {
+        // If pane already visible
         if (this.paneRefineChoices.getChildren().contains(pane)) {
+            // Remove
             this.paneRefineChoices.getChildren().remove(pane);
         }
+        // Pane not already showing
         else {
+            // Add
             this.paneRefineChoices.getChildren().add(pane);
         }
+        // Set visibilty for entire refine pane
         visibility();
     }
 
     public void visibility() {
+        // If no categorys selected
         if (paneRefineChoices.getChildren().isEmpty()) {
+            // Do not show refine pane
             paneRefine.setVisible(false);
         }
+        // Categories are selected
         else {
+            // Show refine pane
             paneRefine.setVisible(true);
         }
     }
@@ -190,13 +222,16 @@ public class Refine {
     } 
 
     public void clearRefine() {
+        // Clear all data match lists
         this.categoryMatches.clear();
         this.neighborhoodMatches.clear();
         this.priceMatches.clear();
         this.hourMatches.clear();
         this.specialsMatches.clear();
         this.resultsTree.clear();
+        // Remove all panes from refine choices
         this.paneRefineChoices.getChildren().clear();
+        // Makes refine pane not visible
         visibility();
     }
 }

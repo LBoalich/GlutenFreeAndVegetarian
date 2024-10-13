@@ -127,10 +127,12 @@ public class Price {
     }
 
     public void clearCboLow() {
+        // Clear low combo box
         this.cboLow.getSelectionModel().clearSelection();
     }
 
     public void clearCboHigh() {
+        // Clear high combo box
         this.cboHigh.getSelectionModel().clearSelection();
     }
 }

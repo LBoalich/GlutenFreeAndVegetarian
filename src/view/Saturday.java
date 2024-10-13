@@ -103,23 +103,32 @@ public class Saturday {
     }
 
     private void cboSaturdayCloseHandler() {
+        // Set close selection
         this.saturdayClose = cboSaturdayClose.getValue();
     }
 
     private void cbSaturdayHandler() {
+        // If day selected
         if (cbSaturday.isSelected()) {
+            // Set open selction
             this.saturdayOpen = cboSaturdayOpen.getValue();
+            // Set close selection
             this.saturdayClose = cboSaturdayClose.getValue();
         }
+        // Day not selected
         else {
+            // Clear data
             this.clearSaturday();
         }
     }
 
     public void clearSaturday() {
+        // Set checkbox selected to false
         this.cbSaturday.selectedProperty().setValue(false);
+        // Clear combo boxes
         this.cboSaturdayOpen.getSelectionModel().clearSelection();
         this.cboSaturdayClose.getSelectionModel().clearSelection();
+        // Clear previous selections
         this.saturdayOpen = this.cboSaturdayOpen.getValue();
         this.saturdayClose = this.cboSaturdayClose.getValue();
     }
