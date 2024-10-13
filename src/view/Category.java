@@ -13,6 +13,7 @@ public class Category {
     private VBox paneCategory;
     private ArrayList<String> selectedCategories = new ArrayList<>();
     private ArrayList<Restaurant> categoryMatches = new ArrayList<>();
+    private ArrayList<ToggleButton> categoryButtonList = new ArrayList<>();
 
     public Category() {
         category();
@@ -24,6 +25,10 @@ public class Category {
 
     public ArrayList<Restaurant> getCategoryMatches() {
         return this.categoryMatches;
+    }
+
+    public ArrayList<ToggleButton> getCategoryButtonList() {
+        return this.categoryButtonList;
     }
 
     private void category() {      
@@ -42,6 +47,8 @@ public class Category {
             fpCategory.getChildren().add(btCategory);
             // Add handler
             btCategory.setOnAction(e -> btCategoryHandler(category));
+            // Add to array list
+            categoryButtonList.add(btCategory);
         }
         // Center align buttons
         fpCategory.setAlignment(Pos.CENTER);
@@ -68,8 +75,16 @@ public class Category {
         // If selections not empty
         if (!selectedCategories.isEmpty()) {
             // Find new matches
-            categoryMatches.addAll(RestaurantsData.RESTAURANTS.categoryMatch(selectedCategories));
-            
+            categoryMatches.addAll(RestaurantsData.RESTAURANTS.categoryMatch(selectedCategories));  
         }
+    }
+
+    public void clearCategory() {
+        this.selectedCategories.clear();
+        this.categoryMatches.clear();
+        // Deslect category toggle buttons
+        for (ToggleButton btCategory : categoryButtonList) {
+            btCategory.setSelected(false);
+        }     
     }
 }

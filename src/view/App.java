@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 public class App extends Application {
     public static BorderPane mainPane = new BorderPane();
     public static Search search = new Search();
+    public static Clear btClear = new Clear();
     public static Filter filter = new Filter();
     public static Refine refine = new Refine();
     public static Back btBack = new Back();

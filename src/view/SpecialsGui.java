@@ -54,4 +54,9 @@ public class SpecialsGui {
             specialsMatches = RestaurantsData.RESTAURANTS.specialsMatch();
         }
     }
+
+    public void clearSpecials() {
+        this.cbSpecials.selectedProperty().setValue(false);
+        specialsMatches.clear();
+    }
 }

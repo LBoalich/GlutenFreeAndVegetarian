@@ -47,9 +47,11 @@ public class Wednesday {
         // Create hbox for Wednesday
         hboxWednesday = new HBox(20);
 
-        // Create Sunday checkbox
+        // Create Wednesday checkbox
         cbWednesday = new CheckBox("Wednesday");
         cbWednesday.setMinWidth(100);
+        // Add handler
+        cbWednesday.setOnAction(e -> cbWednesdayHandler());
 
         // Create Wednesday open and close combo boxes 
         cboWednesdayOpen = new ComboBox<>(wednesdayOpenHoursList);
@@ -77,5 +79,23 @@ public class Wednesday {
 
     private void cboWednesdayCloseHandler() {
         this.wednesdayClose = cboWednesdayClose.getValue();
+    }
+
+    private void cbWednesdayHandler() {
+        if (cbWednesday.isSelected()) {
+            this.wednesdayOpen = cboWednesdayOpen.getValue();
+            this.wednesdayClose = cboWednesdayClose.getValue();
+        }
+        else {
+            this.clearWednesday();
+        }
+    }
+
+    public void clearWednesday() {
+        this.cbWednesday.selectedProperty().setValue(false);
+        this.cboWednesdayOpen.getSelectionModel().clearSelection();
+        this.cboWednesdayClose.getSelectionModel().clearSelection();
+        this.wednesdayOpen = this.cboWednesdayOpen.getValue();
+        this.wednesdayClose = this.cboWednesdayClose.getValue();
     }
 }

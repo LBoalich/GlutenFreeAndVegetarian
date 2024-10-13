@@ -38,63 +38,6 @@ public class Refine {
         return this.paneRefineChoices;
     }
 
-    private void refine() {
-        // Create borderpane
-        paneRefine = new BorderPane();
-
-        // Create vbox for refinement options
-        paneRefineChoices = new VBox(25);
-        // Center align
-        paneRefineChoices.setAlignment(Pos.CENTER);
-
-        // Create refine label
-        Label lbRefine = new Label("Refine");
-        // Set padding
-        lbRefine.setPadding(new Insets(10));
-
-        // Create refine button
-        Button btRefine = new Button("Results");
-        // Create button hbox
-        HBox hboxButton = new HBox(btRefine);
-        // Center align
-        hboxButton.setAlignment(Pos.CENTER);
-        // Set padding
-        hboxButton.setPadding(new Insets(20));
-        // Add event handler
-        btRefine.setOnAction(e -> resultsHandler());
-
-        // Add label, vbox, and button to border pane
-        paneRefine.setTop(lbRefine);
-        paneRefine.setCenter(paneRefineChoices);
-        paneRefine.setBottom(hboxButton);
-        // Center align
-        BorderPane.setAlignment(lbRefine, Pos.CENTER);
-        // Set min sizde
-        paneRefine.setMinWidth(800);
-
-        // Set visibility to false
-        paneRefine.setVisible(false);
-    }
-
-    public void toggle(Pane pane) {
-        if (this.paneRefineChoices.getChildren().contains(pane)) {
-            this.paneRefineChoices.getChildren().remove(pane);
-        }
-        else {
-            this.paneRefineChoices.getChildren().add(pane);
-        }
-        visibility();
-    }
-
-    public void visibility() {
-        if (paneRefineChoices.getChildren().isEmpty()) {
-            paneRefine.setVisible(false);
-        }
-        else {
-            paneRefine.setVisible(true);
-        }
-    }
-
     private void setResultsTree() {
         // Clear previous results
         categoryMatches.clear();
@@ -178,7 +121,64 @@ public class Refine {
                 resultsTree.add(restaurant);
             }
         }
-    }  
+    } 
+
+    private void refine() {
+        // Create borderpane
+        paneRefine = new BorderPane();
+
+        // Create vbox for refinement options
+        paneRefineChoices = new VBox(25);
+        // Center align
+        paneRefineChoices.setAlignment(Pos.CENTER);
+
+        // Create refine label
+        Label lbRefine = new Label("Refine");
+        // Set padding
+        lbRefine.setPadding(new Insets(10));
+
+        // Create refine button
+        Button btRefine = new Button("Results");
+        // Create button hbox
+        HBox hboxButton = new HBox(btRefine);
+        // Center align
+        hboxButton.setAlignment(Pos.CENTER);
+        // Set padding
+        hboxButton.setPadding(new Insets(20));
+        // Add event handler
+        btRefine.setOnAction(e -> resultsHandler());
+
+        // Add label, vbox, and button to border pane
+        paneRefine.setTop(lbRefine);
+        paneRefine.setCenter(paneRefineChoices);
+        paneRefine.setBottom(hboxButton);
+        // Center align
+        BorderPane.setAlignment(lbRefine, Pos.CENTER);
+        // Set min sizde
+        paneRefine.setMinWidth(800);
+
+        // Set visibility to false
+        paneRefine.setVisible(false);
+    }
+
+    public void toggle(Pane pane) {
+        if (this.paneRefineChoices.getChildren().contains(pane)) {
+            this.paneRefineChoices.getChildren().remove(pane);
+        }
+        else {
+            this.paneRefineChoices.getChildren().add(pane);
+        }
+        visibility();
+    }
+
+    public void visibility() {
+        if (paneRefineChoices.getChildren().isEmpty()) {
+            paneRefine.setVisible(false);
+        }
+        else {
+            paneRefine.setVisible(true);
+        }
+    }
     
     private void resultsHandler() {
         // Set results
@@ -188,4 +188,15 @@ public class Refine {
         // Update main pane center pane
         App.mainPane.setCenter(new Results(this.resultsTree).getResultsPane());
     } 
+
+    public void clearRefine() {
+        this.categoryMatches.clear();
+        this.neighborhoodMatches.clear();
+        this.priceMatches.clear();
+        this.hourMatches.clear();
+        this.specialsMatches.clear();
+        this.resultsTree.clear();
+        this.paneRefineChoices.getChildren().clear();
+        visibility();
+    }
 }

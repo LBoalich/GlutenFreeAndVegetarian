@@ -39,7 +39,7 @@ public class Sunday {
     }
 
     private void sunday() {
-        // Create open time observable list
+         // Create open time observable list
         ObservableList<String> sundayOpenHoursList = FXCollections.observableArrayList(HoursGui.HOURS_ARRAY);
         // Create clost time observable list
         ObservableList<String> sundayCloseHoursList = FXCollections.observableArrayList(HoursGui.HOURS_ARRAY);
@@ -50,6 +50,8 @@ public class Sunday {
         // Create Sunday checkbox
         cbSunday = new CheckBox("Sunday");
         cbSunday.setMinWidth(100);
+        // Add handler
+        cbSunday.setOnAction(e -> cbSundayHandler());
        
         // Create open and close combo boxes 
         cboSundayOpen = new ComboBox<>(sundayOpenHoursList);
@@ -78,5 +80,23 @@ public class Sunday {
 
     private void cboSundayCloseHandler() {
         this.sundayClose = cboSundayClose.getValue();
+    }
+
+    private void cbSundayHandler() {
+        if (cbSunday.isSelected()) {
+            this.sundayOpen = cboSundayOpen.getValue();
+            this.sundayClose = cboSundayClose.getValue();
+        }
+        else {
+            this.clearSunday();
+        }
+    }
+
+    public void clearSunday() {
+        this.cbSunday.selectedProperty().setValue(false);
+        this.cboSundayOpen.getSelectionModel().clearSelection();
+        this.cboSundayClose.getSelectionModel().clearSelection();
+        this.sundayOpen = this.cboSundayOpen.getValue();
+        this.sundayClose = this.cboSundayClose.getValue();
     }
 }

@@ -16,11 +16,6 @@ public class Back {
         return this.btBack;
     }
 
-    public void addPane(Pane pane) {
-        backStack.push(pane);
-        btBackVisibility();
-    }
-
     private void back() {
         // Create back button
         btBack = new Button("Back");
@@ -44,5 +39,10 @@ public class Back {
         else {
             btBack.setVisible(true);
         }
+    }
+
+    public void addPane(Pane pane) {
+        backStack.push(pane);
+        btBackVisibility();
     }
 }

@@ -38,15 +38,27 @@ public class HoursGui {
             return this.hoursMatches;
         }
 
+        // Create list to track open only on certain day
+        ArrayList<Restaurant> onlyDayMatch = new ArrayList<>();
         // Create hours no mid day close object
         HoursNoMidDayClose hours = new HoursNoMidDayClose();
         /* Get matches for each day */
         // Sunday
         // If selections made
         if (sunday.getSundaySelected()) {
-            // Set sunday hours
-            hours.setSundayOpen(sunday.getSundayOpen());
-            hours.setSundayClose(sunday.getSundayClose());
+            String sundayOpen = sunday.getSundayOpen();
+            String sundayClose = sunday.getSundayClose();
+            // If sunday open or close null get day matches
+            if (sundayOpen == null || sundayClose == null) {
+                onlyDayMatch.addAll(RestaurantsData.RESTAURANTS.sundayMatch());
+                // Can't search this day based on hours, set to close to prevent error
+                hours.setSunday(false);
+            }
+            else {
+                //Set sunday hours
+                hours.setSundayOpen(sundayOpen);
+                hours.setSundayClose(sundayClose);
+            }
         } 
         // Set day to closed
         else {
@@ -55,9 +67,32 @@ public class HoursGui {
         // Monday
         // If selections made
         if (monday.getMondaySelected()) {
-            // Set hours
-            hours.setMondayOpen(monday.getMondayOpen());
-            hours.setMondayClose(monday.getMondayClose());
+            String mondayOpen = monday.getMondayOpen();
+            String mondayClose = monday.getMondayClose();
+            // If open or close null get day matches
+            if (mondayOpen == null || mondayClose == null) {
+                // Can't search this day based on hours, set to close to prevent error
+                hours.setMonday(false);
+                // If only day match empty
+                if (onlyDayMatch.isEmpty()) {
+                    // Add all
+                    onlyDayMatch.addAll(RestaurantsData.RESTAURANTS.mondayMatch());
+                }
+                else {
+                    // Add only restaurants from both
+                    onlyDayMatch.retainAll(RestaurantsData.RESTAURANTS.mondayMatch());
+                    // If emtpy no results add null to hours match and return
+                    if (onlyDayMatch.isEmpty()) {
+                        this.hoursMatches.add(null);
+                        return this.hoursMatches;
+                    }
+                }
+            }
+            else {
+                // Set hours
+                hours.setMondayOpen(monday.getMondayOpen());
+                hours.setMondayClose(monday.getMondayClose());
+            }
         } 
         // Set day to closed
         else {
@@ -66,31 +101,100 @@ public class HoursGui {
         // Tuesday
         // If selections made
         if (tuesday.getTuesdaySelected()) {
-            // Set hours
-            hours.setTuesdayOpen(tuesday.getTuesdayOpen());
-            hours.setTuesdayClose(tuesday.getTuesdayClose());
-        }
-        // Set day to closed 
+            String tuesdayOpen = tuesday.getTuesdayOpen();
+            String tuesdayClose = tuesday.getTuesdayClose();
+            // If open or close null get day matches
+            if (tuesdayOpen == null || tuesdayClose == null) {
+                // Can't search this day based on hours, set to close to prevent error
+                hours.setTuesday(false);
+                // If only day match empty
+                if (onlyDayMatch.isEmpty()) {
+                    // Add all
+                    onlyDayMatch.addAll(RestaurantsData.RESTAURANTS.tuesdayMatch());
+                }
+                else {
+                    // Add only restaurants from both
+                    onlyDayMatch.retainAll(RestaurantsData.RESTAURANTS.tuesdayMatch());
+                    // If emtpy no results add null to hours match and return
+                    if (onlyDayMatch.isEmpty()) {
+                        this.hoursMatches.add(null);
+                        return this.hoursMatches;
+                    }
+                }
+            }
+            else {
+                // Set hours
+                hours.setTuesdayOpen(tuesday.getTuesdayOpen());
+                hours.setTuesdayClose(tuesday.getTuesdayClose());
+            }
+        } 
+        // Set day to closed
         else {
             hours.setTuesday(false);
         }
         // Wednesday
         // If selections made
         if (wednesday.getWednesdaySelected()) {
-            // Set hours
-            hours.setWednesdayOpen(wednesday.getWednesdayOpen());
-            hours.setWednesdayClose(wednesday.getWednesdayClose());
-        }
-        // Set day to closed 
+            String wednesdayOpen = wednesday.getWednesdayOpen();
+            String wednesdayClose = wednesday.getWednesdayClose();
+            // If open or close null get day matches
+            if (wednesdayOpen == null || wednesdayClose == null) {
+                // Can't search this day based on hours, set to close to prevent error
+                hours.setWednesday(false);
+                // If only day match empty
+                if (onlyDayMatch.isEmpty()) {
+                    // Add all
+                    onlyDayMatch.addAll(RestaurantsData.RESTAURANTS.wednesdayMatch());
+                }
+                else {
+                    // Add only restaurants from both
+                    onlyDayMatch.retainAll(RestaurantsData.RESTAURANTS.wednesdayMatch());
+                    // If emtpy no results add null to hours match and return
+                    if (onlyDayMatch.isEmpty()) {
+                        this.hoursMatches.add(null);
+                        return this.hoursMatches;
+                    }
+                }
+            }
+            else {
+                // Set hours
+                hours.setWednesdayOpen(wednesday.getWednesdayOpen());
+                hours.setWednesdayClose(wednesday.getWednesdayClose());
+            }
+        } 
+        // Set day to closed
         else {
             hours.setWednesday(false);
         }
         // Thursday
         // If selections made
         if (thursday.getThursdaySelected()) {
-            // Set hours
-            hours.setThursdayOpen(thursday.getThursdayOpen());
-            hours.setThursdayClose(thursday.getThursdayClose());
+            String thursdayOpen = thursday.getThursdayOpen();
+            String thursdayClose = thursday.getThursdayClose();
+            // If open or close null get day matches
+            if (thursdayOpen == null || thursdayClose == null) {
+                // Can't search this day based on hours, set to close to prevent error
+                hours.setThursday(false);
+                // If only day match empty
+                if (onlyDayMatch.isEmpty()) {
+                    // Add all
+                    onlyDayMatch.addAll(RestaurantsData.RESTAURANTS.thursdayMatch());
+                }
+                else {
+                    // Add only restaurants from both
+                    onlyDayMatch.retainAll(RestaurantsData.RESTAURANTS.thursdayMatch());
+                    // If emtpy no results add null to hours match and return
+                    if (onlyDayMatch.isEmpty()) {
+                        this.hoursMatches.add(null);
+                        return this.hoursMatches;
+                    }
+                }
+            }
+            else {
+                // Set hours
+                hours.setThursdayOpen(thursday.getThursdayOpen());
+                hours.setThursdayClose(thursday.getThursdayClose());
+            }
         } 
         // Set day to closed
         else {
@@ -99,30 +203,102 @@ public class HoursGui {
         // Friday
         // If selections made
         if (friday.getFridaySelected()) {
-            // Set hours
-            hours.setFridayOpen(friday.getFridayOpen());
-            hours.setFridayClose(friday.getFridayClose());
-        }
-        // Set day to closed 
+            String fridayOpen = friday.getFridayOpen();
+            String fridayClose = friday.getFridayClose();
+            // If open or close null get day matches
+            if (fridayOpen == null || fridayClose == null) {
+                // Can't search this day based on hours, set to close to prevent error
+                hours.setFriday(false);
+                // If only day match empty
+                if (onlyDayMatch.isEmpty()) {
+                    // Add all
+                    onlyDayMatch.addAll(RestaurantsData.RESTAURANTS.fridayMatch());
+                }
+                else {
+                    // Add only restaurants from both
+                    onlyDayMatch.retainAll(RestaurantsData.RESTAURANTS.fridayMatch());
+                    // If emtpy no results add null to hours match and return
+                    if (onlyDayMatch.isEmpty()) {
+                        this.hoursMatches.add(null);
+                        return this.hoursMatches;
+                    }
+                }
+            }
+            else {
+                // Set hours
+                hours.setFridayOpen(friday.getFridayOpen());
+                hours.setFridayClose(friday.getFridayClose());
+            }
+        } 
+        // Set day to closed
         else {
             hours.setFriday(false);
         }
         // Saturday
         // If selections made
         if (saturday.getSaturdaySelected()) {
-            // Set hours
-            hours.setSaturdayOpen(saturday.getSaturdayOpen());
-            hours.setSaturdayClose(saturday.getSaturdayClose());
-        }
-        // Set day to closed 
+            String saturdayOpen = saturday.getSaturdayOpen();
+            String saturdayClose = saturday.getSaturdayClose();
+            // If open or close null get day matches
+            if (saturdayOpen == null || saturdayClose == null) {
+                // Can't search this day based on hours, set to close to prevent error
+                hours.setSaturday(false);
+                // If only day match empty
+                if (onlyDayMatch.isEmpty()) {
+                    // Add all
+                    onlyDayMatch.addAll(RestaurantsData.RESTAURANTS.saturdayMatch());
+                }
+                else {
+                    // Add only restaurants from both
+                    onlyDayMatch.retainAll(RestaurantsData.RESTAURANTS.saturdayMatch());
+                    // If emtpy no results add null to hours match and return
+                    if (onlyDayMatch.isEmpty()) {
+                        this.hoursMatches.add(null);
+                        return this.hoursMatches;
+                    }
+                }
+            }
+            else {
+                // Set hours
+                hours.setSaturdayOpen(saturday.getSaturdayOpen());
+                hours.setSaturdayClose(saturday.getSaturdayClose());
+            }
+        } 
+        // Set day to closed
         else {
             hours.setSaturday(false);
         }
-
         // Get matches for selected open and close hours
-        hoursMatches = RestaurantsData.RESTAURANTS.hoursMatch(hours);
-
-        return this.hoursMatches;
+        ArrayList<Restaurant> currentMatches = RestaurantsData.RESTAURANTS.hoursMatch(hours);
+        // If either null add null to hoursMatches and return
+        if (onlyDayMatch.contains(null) || currentMatches.contains(null)) {
+            this.hoursMatches.add(null);
+            return this.hoursMatches;
+        }
+        else if (onlyDayMatch.isEmpty()) {
+            // Only days not selected, return hours matches
+            this.hoursMatches.addAll(currentMatches);
+            return this.hoursMatches;
+        }
+        else if (currentMatches.isEmpty()) {
+            // No hours filter used, return only day matches
+            this.hoursMatches.addAll(onlyDayMatch);
+            return this.hoursMatches;
+        }
+        else {
+            // Retain only restaurants from both
+            currentMatches.retainAll(onlyDayMatch);
+            // If current matches emtpy, add null to hours matches and return
+            if (currentMatches.isEmpty()) {
+                this.hoursMatches.add(null);
+                return this.hoursMatches;
+            }
+            else {
+                // Matches exist, add to hours matches and return
+                this.hoursMatches.addAll(currentMatches);
+                return this.hoursMatches;
+            }
+        }   
     }
 
     private void hours() {
@@ -146,5 +322,15 @@ public class HoursGui {
         paneHours.getChildren().addAll(lbHours, sunday.getSundayPane(), monday.getMondayPane() , tuesday.getTuesdayPane(), wednesday.getWednesdayPane(), thursday.getThursdayPane(), friday.getFridayPane(), saturday.getSaturdayPane());
         // Set alignment
         paneHours.setAlignment(Pos.CENTER);
+    }
+
+    public void clearHours() {
+        this.sunday.clearSunday();
+        this.monday.clearMonday();
+        this.tuesday.clearTuesday();
+        this.wednesday.clearWednesday();
+        this.thursday.clearThursday();
+        this.friday.clearFriday();
+        this.saturday.clearSaturday();
     }
 }

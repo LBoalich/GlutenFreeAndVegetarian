@@ -122,6 +122,83 @@ public class Restaurants {
 	    return hasSpecials;
     }
 
+    public ArrayList<Restaurant> sundayMatch() {
+        // Create array list to hold matching restaurants
+        ArrayList<Restaurant> dayMatch = new ArrayList<>();
+        for (Restaurant restaurant : this.restaurants) {
+            if (restaurant.getHoursOpened().getSunday()) {
+                dayMatch.add(restaurant);
+            }
+        }
+        return dayMatch;
+    }
+
+    public ArrayList<Restaurant> mondayMatch() {
+        // Create array list to hold matching restaurants
+        ArrayList<Restaurant> dayMatch = new ArrayList<>();
+        for (Restaurant restaurant : this.restaurants) {
+            if (restaurant.getHoursOpened().getMonday()) {
+                dayMatch.add(restaurant);
+            }
+        }
+        return dayMatch;
+    }
+
+    public ArrayList<Restaurant> tuesdayMatch() {
+        // Create array list to hold matching restaurants
+        ArrayList<Restaurant> dayMatch = new ArrayList<>();
+        for (Restaurant restaurant : this.restaurants) {
+            if (restaurant.getHoursOpened().getTuesday()) {
+                dayMatch.add(restaurant);
+            }
+        }
+        return dayMatch;
+    }
+
+    public ArrayList<Restaurant> wednesdayMatch() {
+        // Create array list to hold matching restaurants
+        ArrayList<Restaurant> dayMatch = new ArrayList<>();
+        for (Restaurant restaurant : this.restaurants) {
+            if (restaurant.getHoursOpened().getWednesday()) {
+                dayMatch.add(restaurant);
+            }
+        }
+        return dayMatch;
+    }
+
+    public ArrayList<Restaurant> thursdayMatch() {
+        // Create array list to hold matching restaurants
+        ArrayList<Restaurant> dayMatch = new ArrayList<>();
+        for (Restaurant restaurant : this.restaurants) {
+            if (restaurant.getHoursOpened().getThursday()) {
+                dayMatch.add(restaurant);
+            }
+        }
+        return dayMatch;
+    }
+
+    public ArrayList<Restaurant> fridayMatch() {
+        // Create array list to hold matching restaurants
+        ArrayList<Restaurant> dayMatch = new ArrayList<>();
+        for (Restaurant restaurant : this.restaurants) {
+            if (restaurant.getHoursOpened().getFriday()) {
+                dayMatch.add(restaurant);
+            }
+        }
+        return dayMatch;
+    }
+
+    public ArrayList<Restaurant> saturdayMatch() {
+        // Create array list to hold matching restaurants
+        ArrayList<Restaurant> dayMatch = new ArrayList<>();
+        for (Restaurant restaurant : this.restaurants) {
+            if (restaurant.getHoursOpened().getSaturday()) {
+                dayMatch.add(restaurant);
+            }
+        }
+        return dayMatch;
+    }
+
     /* Return the restaurants that are open during the given time frames for the given days */
     public ArrayList<Restaurant> hoursMatch(Hours filterHours) {
 	    ArrayList <Restaurant> hoursMatch = new ArrayList<>();

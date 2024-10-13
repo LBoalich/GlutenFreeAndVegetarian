@@ -1,8 +1,10 @@
 package view;
 
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
@@ -20,26 +22,6 @@ public class Filter {
 
     public VBox getFilterPane() {
         return this.paneFilter;
-    }
-
-    public boolean isCategorySelected() {
-        return this.btCategory.isSelected();
-    }
-
-    public boolean isNeighborhoodSelected() {
-        return this.btNieghborhood.isSelected();
-    }
-
-    public boolean isPriceSelected() {
-        return this.btPrice.isSelected();
-    }
-
-    public boolean isHoursSelected() {
-        return this.btHours.isSelected();
-    }
-
-    public boolean isSpecialsSelected() {
-        return this.btSpecials.isSelected();
     }
 
     /* Create filter method */
@@ -104,11 +86,70 @@ public class Filter {
         // Set event handler
         btSpecials.setOnAction(e -> handler(App.specials.getSpecialsPane()));
 
+        // Create hbox for clear button
+        HBox hboxClearButton = new HBox();
+        // Add clear button to pane
+        hboxClearButton.getChildren().add(App.btClear.getClearButton());
+        // Center align
+        hboxClearButton.setAlignment(Pos.CENTER);
+        // Add padding
+        hboxClearButton.setPadding(new Insets(10));
+        // Add clear pane to vbox
+        vbox.getChildren().add(hboxClearButton);
+
         //Add flow pane to vbox
         paneFilter.getChildren().add(vbox);
     }
 
     private void handler(Pane pane) {
         App.refine.toggle(pane);
+    }
+
+    public boolean isCategorySelected() {
+        return this.btCategory.isSelected();
+    }
+
+    public boolean isNeighborhoodSelected() {
+        return this.btNieghborhood.isSelected();
+    }
+
+    public boolean isPriceSelected() {
+        return this.btPrice.isSelected();
+    }
+
+    public boolean isHoursSelected() {
+        return this.btHours.isSelected();
+    }
+
+    public boolean isSpecialsSelected() {
+        return this.btSpecials.isSelected();
+    }
+
+    public void deselectCategoryButton() {
+        this.btCategory.setSelected(false);
+    }
+
+    public void deselectNeighborhoodButton() {
+        this.btNieghborhood.setSelected(false);
+    }
+
+    public void deselectPriceButton() {
+        this.btPrice.setSelected(false);
+    }
+
+    public void deselectHoursButton() {
+        this.btHours.setSelected(false);
+    }
+
+    public void deselectSpecialsButton() {
+        this.btSpecials.setSelected(false);
+    }
+
+    public void deselectAllButtons() {
+        deselectCategoryButton();
+        deselectNeighborhoodButton();
+        deselectPriceButton();
+        deselectHoursButton();
+        deselectSpecialsButton();
     }
 }

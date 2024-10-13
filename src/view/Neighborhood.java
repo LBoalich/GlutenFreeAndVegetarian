@@ -13,6 +13,7 @@ public class Neighborhood {
     private VBox paneNeighborhood;
     private ArrayList<String> selectedNeighborhoods = new ArrayList<>();
     private ArrayList<Restaurant> neighborhoodMatches = new ArrayList<>();
+    private ArrayList<ToggleButton> neighborhoodButtonList = new ArrayList<>();
 
     public Neighborhood() {
         neighborhood();
@@ -24,6 +25,10 @@ public class Neighborhood {
 
     public ArrayList<Restaurant> getNeighborhoodMatches() {
         return this.neighborhoodMatches;
+    }
+
+    public ArrayList<ToggleButton> getNeighborhoodButtonList() {
+        return this.neighborhoodButtonList;
     }
 
     private void neighborhood() {
@@ -46,6 +51,8 @@ public class Neighborhood {
             fpNeighborhood.getChildren().add(btNeighborhood);
             // Add handler
             btNeighborhood.setOnAction(e -> btNeighborhoodHandler(neighborhood));
+            // Add to neighborhood button list
+            neighborhoodButtonList.add(btNeighborhood);
         }   
         // Center align buttons
         fpNeighborhood.setAlignment(Pos.CENTER);
@@ -75,5 +82,14 @@ public class Neighborhood {
             // Find new matches
             neighborhoodMatches.addAll(RestaurantsData.RESTAURANTS.neighborhoodMatch(selectedNeighborhoods));
         }
+    }
+
+    public void clearNeighborhood() {
+        this.selectedNeighborhoods.clear();
+        this.neighborhoodMatches.clear();
+        // Deslect toggle buttons
+        for (ToggleButton btNeighborhood : neighborhoodButtonList) {
+            btNeighborhood.setSelected(false);
+        }     
     }
 }

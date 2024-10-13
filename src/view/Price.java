@@ -16,8 +16,8 @@ public class Price {
     private VBox panePrice;
     private ComboBox<Integer> cboLow;
     private ComboBox<Integer> cboHigh;
-    private int selectedLowPrice;
-    private int selectedHighPrice;
+    private Integer selectedLowPrice;
+    private Integer selectedHighPrice;
     private ArrayList<Restaurant> priceMatches = new ArrayList<>();
 
     public Price() {
@@ -55,7 +55,7 @@ public class Price {
         ArrayList<Integer> priceArray = new ArrayList<>();
         // Populate price list
         int i = 5;
-        while (i < 150) {
+        while (i <= 150) {
             priceArray.add(i);
             i += 5;
         }
@@ -100,5 +100,13 @@ public class Price {
     private void cboHighHandler() {
         // Set selected high price
         selectedHighPrice = cboHigh.getValue();
+    }
+
+    public void clearCboLow() {
+        this.cboLow.getSelectionModel().clearSelection();
+    }
+
+    public void clearCboHigh() {
+        this.cboHigh.getSelectionModel().clearSelection();
     }
 }
