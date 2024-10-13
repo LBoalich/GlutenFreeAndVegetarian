@@ -18,7 +18,7 @@ public class Saturday {
     private String saturdayOpen;
     private String saturdayClose;
 
-    Saturday() {
+    public Saturday() {
         saturday();
     }
 
@@ -38,7 +38,7 @@ public class Saturday {
         return this.saturdayClose;
     }
 
-    public void saturday() {
+    private void saturday() {
         // Create open time observable list
         ObservableList<String> saturdayOpenHoursList = FXCollections.observableArrayList(HoursGui.HOURS_ARRAY);
         // Create clost time observable list

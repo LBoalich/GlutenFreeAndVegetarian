@@ -1,11 +1,10 @@
 package view;
 
 import model.Restaurant;
-import model.Restaurants;
 import model.RestaurantsData;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import java.util.ArrayList;
@@ -28,9 +27,6 @@ public class Neighborhood {
     }
 
     private void neighborhood() {
-        // Get restaurants
-        Restaurants restaurants = RestaurantsData.restaurants;
-
         // Create neighborhood vbox
         paneNeighborhood = new VBox(10);
 
@@ -41,9 +37,9 @@ public class Neighborhood {
         FlowPane fpNeighborhood = new FlowPane();
         
         // Add buttons to flow pane
-        for (String neighborhood : restaurants.getNeighborhoods()) {
+        for (String neighborhood : RestaurantsData.RESTAURANTS.getNeighborhoods()) {
             // Create button
-            Button btNeighborhood = new Button(neighborhood);
+            ToggleButton btNeighborhood = new ToggleButton(neighborhood);
             // Set prefered width
             btNeighborhood.setPrefWidth(100);
             // Add button to flow pane
@@ -77,7 +73,7 @@ public class Neighborhood {
         // If selections not empty
         if (!selectedNeighborhoods.isEmpty()) {
             // Find new matches
-            neighborhoodMatches.addAll(RestaurantsData.restaurants.neighborhoodMatch(selectedNeighborhoods));
+            neighborhoodMatches.addAll(RestaurantsData.RESTAURANTS.neighborhoodMatch(selectedNeighborhoods));
         }
     }
 }

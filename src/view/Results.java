@@ -1,32 +1,37 @@
 package view;
 
+import model.NameComparator;
 import model.Restaurant;
-import java.util.TreeSet;
+import model.RestaurantsData;
 
+import java.util.TreeSet;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 public class Results {
-    private TreeSet<Restaurant> results;
+    private TreeSet<Restaurant> results = new TreeSet<>(new NameComparator());
     private VBox paneResults;
-    public static Button btBack;
 
     public Results() {
         results();
     }
 
-    public Results(TreeSet<Restaurant> resultsTree) {
-        this.results = resultsTree;
+    public Results(TreeSet<Restaurant> results) {
+        this.results.addAll(results);
         results();
     }
 
     public VBox getResultsPane() {
         return this.paneResults;
+    }
+
+    public void setResults(TreeSet<Restaurant> resultsTree) {
+        this.results.clear();
+        this.results.addAll(resultsTree);
     }
 
     private void results() {
@@ -45,7 +50,7 @@ public class Results {
         // Center algin
         fpResults.setAlignment(Pos.CENTER);
         // Populate flow pane
-        if (!results.contains(null)) {
+        if (!results.contains(null) && !results.isEmpty()) {
             for (Restaurant restaurant : results) {
                 // Get restaurant info
                 String name = restaurant.getName();
@@ -89,12 +94,12 @@ public class Results {
     }
 
     private void clickHandler(String name) {
-        // Update restaurant gui
-        App.restaurantGUI.setRestaurant(name);
+        // Get matching restaurant
+        Restaurant restaurant = RestaurantsData.RESTAURANTS.nameMatch(name);
         // Add current pane to back button stack
         App.btBack.addPane((Pane) App.mainPane.getCenter());
         // Add pane to main pane
-        App.mainPane.setCenter(App.restaurantGUI.getRestaurantPane());
+        App.mainPane.setCenter(new RestaurantGui(restaurant).getRestaurantPane());
     }
 
     private void mouseEnterHandler() {

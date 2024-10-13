@@ -1,27 +1,45 @@
 package view;
 
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 public class Filter {
     private VBox paneFilter;
-    private Button btCategory;
-    private Button btNieghborhood;
-    private Button btPrice;
-    private Button btHours;
-    private Button btSpecials;
-    private Refine refine;
+    private ToggleButton btCategory;
+    private ToggleButton btNieghborhood;
+    private ToggleButton btPrice;
+    private ToggleButton btHours;
+    private ToggleButton btSpecials;
     
-    public Filter(Refine refine) {
-        this.refine = refine;
+    public Filter() {
         filter();
     }
 
     public VBox getFilterPane() {
         return this.paneFilter;
+    }
+
+    public boolean isCategorySelected() {
+        return this.btCategory.isSelected();
+    }
+
+    public boolean isNeighborhoodSelected() {
+        return this.btNieghborhood.isSelected();
+    }
+
+    public boolean isPriceSelected() {
+        return this.btPrice.isSelected();
+    }
+
+    public boolean isHoursSelected() {
+        return this.btHours.isSelected();
+    }
+
+    public boolean isSpecialsSelected() {
+        return this.btSpecials.isSelected();
     }
 
     /* Create filter method */
@@ -42,7 +60,7 @@ public class Filter {
         vbox.setAlignment(Pos.CENTER);
 
         // Create category button
-        btCategory = new Button("Category");
+        btCategory = new ToggleButton("Category");
         // Add category button to grid
         vbox.getChildren().add(btCategory);
         // Set preferred width
@@ -51,7 +69,7 @@ public class Filter {
         btCategory.setOnAction(e -> handler(App.category.getCategoryPane()));
         
         // Create neighborhood button
-        btNieghborhood = new Button("Neighborhood");
+        btNieghborhood = new ToggleButton("Neighborhood");
         // Add neighborhood button to grid
         vbox.getChildren().add(btNieghborhood);
         // Set preferred width
@@ -60,7 +78,7 @@ public class Filter {
         btNieghborhood.setOnAction(e -> handler(App.neighborhood.getNeighborhoodPane()));
 
         // Create price button
-        btPrice = new Button("Price");
+        btPrice = new ToggleButton("Price");
         // Add price button to grid
         vbox.getChildren().add(btPrice);
         // Set preferred width
@@ -69,7 +87,7 @@ public class Filter {
         btPrice.setOnAction(e -> handler(App.price.getPricePane()));
 
         // Create hours button
-        btHours = new Button("Hours");
+        btHours = new ToggleButton("Hours");
         // Add hours button to grid
         vbox.getChildren().add(btHours);
         // Set preferred width
@@ -78,7 +96,7 @@ public class Filter {
         btHours.setOnAction(e -> handler(App.hours.getHoursPane()));
 
         // Create specials button
-        btSpecials = new Button("Specials");
+        btSpecials = new ToggleButton("Specials");
         // Add specials button to grid
         vbox.getChildren().add(btSpecials);
         // Set preferred width
@@ -91,6 +109,6 @@ public class Filter {
     }
 
     private void handler(Pane pane) {
-        refine.toggle(pane);
+        App.refine.toggle(pane);
     }
 }

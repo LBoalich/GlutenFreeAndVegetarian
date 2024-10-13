@@ -7,7 +7,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import model.Restaurant;
 import model.RestaurantsData;
-
 import java.util.ArrayList;
 
 public class SpecialsGui {
@@ -47,12 +46,12 @@ public class SpecialsGui {
         paneSpecials.setAlignment(Pos.CENTER);
     }
 
-    public void cbSpecialsHandler() {
+    private void cbSpecialsHandler() {
         // Clear previous results
         specialsMatches.clear();
         // If selected add matches
         if (cbSpecials.isSelected()) {
-            specialsMatches = RestaurantsData.restaurants.specialsMatch();
+            specialsMatches = RestaurantsData.RESTAURANTS.specialsMatch();
         }
     }
 }

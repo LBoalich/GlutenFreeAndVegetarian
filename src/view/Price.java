@@ -14,7 +14,6 @@ import model.RestaurantsData;
 
 public class Price {
     private VBox panePrice;
-   
     private ComboBox<Integer> cboLow;
     private ComboBox<Integer> cboHigh;
     private int selectedLowPrice;
@@ -35,7 +34,7 @@ public class Price {
         // If selections made
         if (!cboLow.getSelectionModel().isEmpty() && !cboHigh.getSelectionModel().isEmpty()) {
             // Find price matches
-            priceMatches = RestaurantsData.restaurants.priceRangeMatch(selectedLowPrice, selectedHighPrice);
+            priceMatches = RestaurantsData.RESTAURANTS.priceRangeMatch(selectedLowPrice, selectedHighPrice);
         }
         // Return matches
         return this.priceMatches;

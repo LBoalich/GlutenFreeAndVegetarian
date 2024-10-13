@@ -1,12 +1,11 @@
 package view;
 
 import model.Restaurant;
-import model.Restaurants;
 import model.RestaurantsData;
 import java.util.ArrayList;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 
@@ -27,10 +26,7 @@ public class Category {
         return this.categoryMatches;
     }
 
-    private void category() {
-        // Get restaurants
-        Restaurants restaurants = RestaurantsData.restaurants;
-        
+    private void category() {      
         // Create category vbox
         paneCategory = new VBox(10);
 
@@ -40,8 +36,8 @@ public class Category {
         // Create category flow pane
         FlowPane fpCategory = new FlowPane();
         // Add cateogry buttons
-        for (String category : restaurants.getCategories()) {
-            Button btCategory = new Button(category);
+        for (String category : RestaurantsData.RESTAURANTS.getCategories()) {
+            ToggleButton btCategory = new ToggleButton(category);
             btCategory.setPrefWidth(100);
             fpCategory.getChildren().add(btCategory);
             // Add handler
@@ -72,7 +68,8 @@ public class Category {
         // If selections not empty
         if (!selectedCategories.isEmpty()) {
             // Find new matches
-            categoryMatches.addAll(RestaurantsData.restaurants.categoryMatch(selectedCategories));
+            categoryMatches.addAll(RestaurantsData.RESTAURANTS.categoryMatch(selectedCategories));
+            
         }
     }
 }

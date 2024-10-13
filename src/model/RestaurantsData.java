@@ -2,16 +2,9 @@ package model;
 
 public class RestaurantsData {
     // Create restaurants 
-    public static Restaurants restaurants = populateRestaurants();
+    public static final Restaurants RESTAURANTS = populateRestaurants();
 
-    public RestaurantsData() {
-        restaurants = populateRestaurants();
-    }
-
-    // Get restaurants
-    public Restaurants getRestaurants() {
-        return restaurants;
-    }
+    public RestaurantsData() {}
      
     /* Method to populate restaurants */
     public static Restaurants populateRestaurants() {

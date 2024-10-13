@@ -1,6 +1,6 @@
 package view;
 
-import model.Restaurants;
+import model.Restaurant;
 import model.RestaurantsData;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,6 +14,7 @@ import javafx.scene.layout.Pane;
 
 public class Search {
     private HBox paneSearch;
+    private ObservableList<String> namesList;
     private ComboBox<String> cboSearch; 
 
     public Search() {
@@ -32,17 +33,15 @@ public class Search {
 
     /* Create the search pane */
     private void search() {
-        // Get restaurants
-        Restaurants restaurants = RestaurantsData.restaurants;
         // Create the pane
         paneSearch = new HBox();
         // Set alignment
         paneSearch.setAlignment(Pos.CENTER);
     
         // Get list view items
-        ObservableList<String> namesList = FXCollections.observableArrayList(restaurants.getNames());
+        namesList = FXCollections.observableArrayList(RestaurantsData.RESTAURANTS.getNames());
         // Create combo box to choose a restaurant
-        this.cboSearch = new ComboBox<>(namesList);
+        cboSearch = new ComboBox<>(namesList);
         // Add cbo event handler
         cboSearch.setOnAction(e -> cboHandler());
 
@@ -59,11 +58,11 @@ public class Search {
     private void cboHandler() {
         // Get user selection
         String name = cboSearch.getValue();
-        // Update restaurant gui
-        App.restaurantGUI.setRestaurant(name);
+        // Get matching restaurant
+        Restaurant restaurant = RestaurantsData.RESTAURANTS.nameMatch(name);
         // Add current pane to back button stack
         App.btBack.addPane((Pane) App.mainPane.getCenter());
         // Update main page
-        App.mainPane.setCenter(App.restaurantGUI.getRestaurantPane());
+        App.mainPane.setCenter(new RestaurantGui(restaurant).getRestaurantPane());
     }
 }

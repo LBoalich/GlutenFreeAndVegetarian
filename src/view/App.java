@@ -5,18 +5,19 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class App extends Application {
     public static BorderPane mainPane = new BorderPane();
+    public static Search search = new Search();
+    public static Filter filter = new Filter();
+    public static Refine refine = new Refine();
     public static Back btBack = new Back();
     public static Category category = new Category();
     public static Neighborhood neighborhood = new Neighborhood();
     public static Price price = new Price();
     public static HoursGui hours = new HoursGui();
     public static SpecialsGui specials = new SpecialsGui();
-    public static RestaurantGui restaurantGUI = new RestaurantGui();
 
     // Override the start method in the Application class
     @Override
@@ -24,26 +25,16 @@ public class App extends Application {
         // Add padding to main pain
         mainPane.setPadding(new Insets(20));
       
-        // Create the search pane
-        HBox paneSearch = new Search().getSearchPane();
         // Add search to border pane
-        mainPane.setTop(paneSearch);
+        mainPane.setTop(search.getSearchPane());
 
         // Create hbox to hold center items for border pane
         HBox hboxCenter = new HBox(30);
-
-        // Create refine
-        Refine refine = new Refine();
-        // Create refine pane
-        Pane paneRefine = refine.getRefinePane();
-
-        // Create filter pane
-        Pane paneFilter = new Filter(refine).getFilterPane();
         
-        // Add filter and refine to vbox
-        hboxCenter.getChildren().addAll(paneFilter, paneRefine);
+        // Add filter and refine to hbox
+        hboxCenter.getChildren().addAll(filter.getFilterPane(), refine.getRefinePane());
 
-        // Add vbox to border pane
+        // Add hbox to border pane
         mainPane.setCenter(hboxCenter);
 
         // Add back button to border pane

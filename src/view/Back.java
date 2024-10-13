@@ -8,7 +8,7 @@ public class Back {
     private Button btBack;
     private Stack<Pane> backStack;
 
-    Back() {
+    public Back() {
         back();
     }
 
@@ -21,7 +21,7 @@ public class Back {
         btBackVisibility();
     }
 
-    public void back() {
+    private void back() {
         // Create back button
         btBack = new Button("Back");
         // Create stack to hold previous panes

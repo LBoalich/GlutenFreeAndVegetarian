@@ -5,10 +5,8 @@ import model.Restaurant;
 import model.RestaurantsData;
 import java.util.ArrayList;
 import java.util.TreeSet;
-import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
@@ -20,13 +18,13 @@ public class Refine {
     private BorderPane paneRefine;
     private VBox paneRefineChoices;
     /* Create arrays to hold refinement category matches */
-    ArrayList<Restaurant> categoryMatches = new ArrayList<>();
-    ArrayList<Restaurant> neighborhoodMatches = new ArrayList<>();
-    ArrayList<Restaurant> priceMatches = new ArrayList<>();
-    ArrayList<Restaurant> hourMatches = new ArrayList<>();
-    ArrayList<Restaurant> specialsMatches = new ArrayList<>();
+    private ArrayList<Restaurant> categoryMatches = new ArrayList<>();
+    private ArrayList<Restaurant> neighborhoodMatches = new ArrayList<>();
+    private ArrayList<Restaurant> priceMatches = new ArrayList<>();
+    private ArrayList<Restaurant> hourMatches = new ArrayList<>();
+    private ArrayList<Restaurant> specialsMatches = new ArrayList<>();
     // Create array to hold matches
-    TreeSet<Restaurant> resultsTree = new TreeSet<>(new NameComparator());
+    private TreeSet<Restaurant> resultsTree = new TreeSet<>(new NameComparator());
  
     public Refine () {
         refine();
@@ -40,7 +38,7 @@ public class Refine {
         return this.paneRefineChoices;
     }
 
-    public void refine() {
+    private void refine() {
         // Create borderpane
         paneRefine = new BorderPane();
 
@@ -97,7 +95,7 @@ public class Refine {
         }
     }
 
-    public void setResultsTree() {
+    private void setResultsTree() {
         // Clear previous results
         categoryMatches.clear();
         neighborhoodMatches.clear();
@@ -107,39 +105,37 @@ public class Refine {
         resultsTree.clear();
         // Create array to hold the refinement category match arrays that the user filtered on
         ArrayList<ArrayList<Restaurant>> checkForMatches = new ArrayList<>();
-        // Get selected refinement options
-        ObservableList<Node> refinementChoices = paneRefineChoices.getChildren();
         /* For the filters the user selected, get mathces and add to check for matches array. */
         // Get category matches
-        if (refinementChoices.contains(App.category.getCategoryPane())) {
+        if (App.filter.isCategorySelected()) {
             categoryMatches.addAll(App.category.getCategoryMatches());
             if (!categoryMatches.isEmpty()) {
                 checkForMatches.add(categoryMatches);
             }
         }
         // Get neighborhood matches
-        if (refinementChoices.contains(App.neighborhood.getNeighborhoodPane())) {
+        if (App.filter.isNeighborhoodSelected()) {
             neighborhoodMatches.addAll(App.neighborhood.getNeighborhoodMatches());
             if (!neighborhoodMatches.isEmpty()) {
                 checkForMatches.add(neighborhoodMatches);
             }
         }
         // Get price matches
-        if (refinementChoices.contains(App.price.getPricePane())) {
+        if (App.filter.isPriceSelected()) {
             priceMatches.addAll(App.price.getPriceMatches());
             if (!priceMatches.isEmpty()) {
                 checkForMatches.add(priceMatches);
             }
         }
         // Get hour matches
-        if (refinementChoices.contains(App.hours.getHoursPane())) {
+        if (App.filter.isHoursSelected()) {
             hourMatches.addAll(App.hours.getHoursMatches());
             if (!hourMatches.isEmpty()) {
                 checkForMatches.add(hourMatches);
             }
         }
         // Get specials matches
-        if (refinementChoices.contains(App.specials.getSpecialsPane())) {
+        if (App.filter.isSpecialsSelected()) {
             specialsMatches.addAll(App.specials.getSpecialsMatches());
             if (!specialsMatches.isEmpty()) {
                 checkForMatches.add(specialsMatches);
@@ -153,19 +149,19 @@ public class Refine {
         }
         // If check for matches is empty then no selections were made.  Return all restaurants
         if (checkForMatches.isEmpty()) {
-            resultsTree = RestaurantsData.restaurants.getRestaurants();
+            resultsTree.addAll(RestaurantsData.RESTAURANTS.getRestaurants());
             return;
         }
         // Create temp array
         ArrayList<Restaurant> temp = new ArrayList<>();
         // Set temp array to first array in check for matches
         temp = checkForMatches.get(0);
-        // If only one filter option seleted, add matches to results
-        if (checkForMatches.size() < 2) {
+        // If only one filter option seleted, add matches to results and return
+        if (checkForMatches.size() == 1) {
             for (Restaurant restaurant : temp) {
                 resultsTree.add(restaurant);
-                return;
             }
+            return;
         }
         else {
             // Loop through match arrays and retain only common restaurants
@@ -189,7 +185,7 @@ public class Refine {
         setResultsTree();
         // Add current pane to back button stack
         App.btBack.addPane((Pane) App.mainPane.getCenter());
-        // Add results to main page and remove filer and refine
-        App.mainPane.setCenter(new Results(resultsTree).getResultsPane());
+        // Update main pane center pane
+        App.mainPane.setCenter(new Results(this.resultsTree).getResultsPane());
     } 
 }

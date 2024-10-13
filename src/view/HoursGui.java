@@ -120,7 +120,7 @@ public class HoursGui {
         }
 
         // Get matches for selected open and close hours
-        hoursMatches = RestaurantsData.restaurants.hoursMatch(hours);
+        hoursMatches = RestaurantsData.RESTAURANTS.hoursMatch(hours);
 
         return this.hoursMatches;
     }
