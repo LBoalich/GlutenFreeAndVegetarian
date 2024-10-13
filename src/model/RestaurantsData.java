@@ -48,7 +48,7 @@ public class RestaurantsData {
         // Wednesday
         hours.setWednesdayMidDayClose(true);
         hours.setWednesdayOpen("11:30 AM");
-        hours.setWednesdayMidClose("3:00 AM");
+        hours.setWednesdayMidClose("3:00 PM");
         hours.setWednesdayMidOpen("5:30 PM");
         hours.setWednesdayClose("9:00 PM");
         // Thursday

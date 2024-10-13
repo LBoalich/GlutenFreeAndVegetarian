@@ -9,10 +9,15 @@ import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class Sunday {
     private HBox hboxSunday;
     private CheckBox cbSunday; 
+    private ArrayList<String> allHours;
+    private ObservableList<String> sundayOpenHoursList;
+    private ObservableList<String> sundayCloseHoursList;
     private ComboBox<String> cboSundayOpen;
     private ComboBox<String> cboSundayClose;
     private String sundayOpen;
@@ -39,10 +44,14 @@ public class Sunday {
     }
 
     private void sunday() {
-         // Create open time observable list
-        ObservableList<String> sundayOpenHoursList = FXCollections.observableArrayList(HoursGui.HOURS_ARRAY);
+        // Create all hours array list
+        allHours = new ArrayList<>();
+        // Add all hours
+        Collections.addAll(allHours, HoursGui.HOURS_ARRAY);
+        // Create open time observable list
+        sundayOpenHoursList = FXCollections.observableArrayList(HoursGui.HOURS_ARRAY);
         // Create clost time observable list
-        ObservableList<String> sundayCloseHoursList = FXCollections.observableArrayList(HoursGui.HOURS_ARRAY);
+        sundayCloseHoursList = FXCollections.observableArrayList(HoursGui.HOURS_ARRAY);
 
         // Create hbox
         hboxSunday = new HBox(20);
@@ -57,7 +66,7 @@ public class Sunday {
         cboSundayOpen = new ComboBox<>(sundayOpenHoursList);
         cboSundayClose = new ComboBox<>(sundayCloseHoursList);
         // Add event handlers
-        cboSundayOpen.setOnAction(e -> cboSundayOpenHandler());
+        cboSundayOpen.setOnAction(e -> cboSundayOpenHandler(cboSundayOpen.getValue()));
         cboSundayClose.setOnAction(e -> cboSundayCloseHandler());
 
         // Create labels for combos
@@ -74,8 +83,23 @@ public class Sunday {
 
     }
 
-    private void cboSundayOpenHandler() {
-        this.sundayOpen = cboSundayOpen.getValue();
+    private void cboSundayOpenHandler(String open) {
+        // Set selected value
+        this.sundayOpen = open;
+        // Find index of selected time
+        int openIndex = allHours.indexOf(open);
+        if (openIndex >= 0) {
+            // Create new list for close
+            ArrayList<String> newCloseList = new ArrayList<>();
+            newCloseList.addAll(allHours.subList(openIndex, allHours.size()));
+            // Update close observable list to only keep new times
+            sundayCloseHoursList.retainAll(newCloseList);
+        }
+        else {
+            // Set close hours to all hours
+            sundayCloseHoursList.clear();
+            sundayCloseHoursList.addAll(allHours);
+        }
     }
 
     private void cboSundayCloseHandler() {

@@ -9,10 +9,15 @@ import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class Monday {
     private HBox hboxMonday;
     private CheckBox cbMonday;
+    private ArrayList<String> allHours;
+    private ObservableList<String> mondayOpenHoursList;
+    private ObservableList<String> mondayCloseHoursList;
     private ComboBox<String> cboMondayOpen;
     private ComboBox<String> cboMondayClose;
     private String mondayOpen;
@@ -39,10 +44,14 @@ public class Monday {
     }
 
     private void monday() {
+        // Create all hours array list
+        allHours = new ArrayList<>();
+        // Add all hours
+        Collections.addAll(allHours, HoursGui.HOURS_ARRAY);
         // Create open time observable list
-        ObservableList<String> mondayOpenHoursList = FXCollections.observableArrayList(HoursGui.HOURS_ARRAY);
+        mondayOpenHoursList = FXCollections.observableArrayList(HoursGui.HOURS_ARRAY);
         // Create clost time observable list
-        ObservableList<String> mondayCloseHoursList = FXCollections.observableArrayList(HoursGui.HOURS_ARRAY);
+        mondayCloseHoursList = FXCollections.observableArrayList(HoursGui.HOURS_ARRAY);
         
         // Create hbox for Monday
         hboxMonday = new HBox(20);
@@ -57,7 +66,7 @@ public class Monday {
         cboMondayOpen = new ComboBox<>(mondayOpenHoursList);
         cboMondayClose = new ComboBox<>(mondayCloseHoursList);
         // Add event handlers
-        cboMondayOpen.setOnAction(e -> cboMondayOpenHandler());
+        cboMondayOpen.setOnAction(e -> cboMondayOpenHandler(cboMondayOpen.getValue()));
         cboMondayClose.setOnAction(e -> cboMondayCloseHandler());
 
         // Create labels for combos
@@ -73,8 +82,23 @@ public class Monday {
         hboxMonday.setAlignment(Pos.CENTER);
     }
 
-    private void cboMondayOpenHandler() {
-        this.mondayOpen = cboMondayOpen.getValue();
+    private void cboMondayOpenHandler(String open) {
+        // Set selected value
+        this.mondayOpen = open;
+        // Find index of selected time
+        int openIndex = allHours.indexOf(open);
+        if (openIndex >= 0) {
+            // Create new list for close
+            ArrayList<String> newCloseList = new ArrayList<>();
+            newCloseList.addAll(allHours.subList(openIndex, allHours.size()));
+            // Update close observable list to only keep new times
+            mondayCloseHoursList.retainAll(newCloseList);
+        }
+        else {
+            // Set close hours to all hours
+            mondayCloseHoursList.clear();
+            mondayCloseHoursList.addAll(allHours);
+        }
     }
 
     private void cboMondayCloseHandler() {
