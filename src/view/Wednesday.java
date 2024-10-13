@@ -92,7 +92,8 @@ public class Wednesday {
             ArrayList<String> newCloseList = new ArrayList<>();
             newCloseList.addAll(allHours.subList(openIndex, allHours.size()));
             // Update close observable list to only keep new times
-            wednesdayCloseHoursList.retainAll(newCloseList);
+            wednesdayCloseHoursList.clear();
+            wednesdayCloseHoursList.addAll(newCloseList);
         }
         else {
             // Set close hours to all hours
