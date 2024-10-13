@@ -121,7 +121,7 @@ public class Restaurants {
         }  
 	    return hasSpecials;
     }
-
+    /* Return restaurants open on Sunday */
     public ArrayList<Restaurant> sundayMatch() {
         // Create array list to hold matching restaurants
         ArrayList<Restaurant> dayMatch = new ArrayList<>();
@@ -133,6 +133,7 @@ public class Restaurants {
         return dayMatch;
     }
 
+     /* Return restaurants open on Monday */
     public ArrayList<Restaurant> mondayMatch() {
         // Create array list to hold matching restaurants
         ArrayList<Restaurant> dayMatch = new ArrayList<>();
@@ -144,6 +145,7 @@ public class Restaurants {
         return dayMatch;
     }
 
+     /* Return restaurants open on Tuesday */
     public ArrayList<Restaurant> tuesdayMatch() {
         // Create array list to hold matching restaurants
         ArrayList<Restaurant> dayMatch = new ArrayList<>();
@@ -155,6 +157,7 @@ public class Restaurants {
         return dayMatch;
     }
 
+     /* Return restaurants open on Wednesday */
     public ArrayList<Restaurant> wednesdayMatch() {
         // Create array list to hold matching restaurants
         ArrayList<Restaurant> dayMatch = new ArrayList<>();
@@ -166,6 +169,7 @@ public class Restaurants {
         return dayMatch;
     }
 
+     /* Return restaurants open on Thursday */
     public ArrayList<Restaurant> thursdayMatch() {
         // Create array list to hold matching restaurants
         ArrayList<Restaurant> dayMatch = new ArrayList<>();
@@ -177,6 +181,7 @@ public class Restaurants {
         return dayMatch;
     }
 
+     /* Return restaurants open on Friday */
     public ArrayList<Restaurant> fridayMatch() {
         // Create array list to hold matching restaurants
         ArrayList<Restaurant> dayMatch = new ArrayList<>();
@@ -188,6 +193,7 @@ public class Restaurants {
         return dayMatch;
     }
 
+     /* Return restaurants open on Saturday */
     public ArrayList<Restaurant> saturdayMatch() {
         // Create array list to hold matching restaurants
         ArrayList<Restaurant> dayMatch = new ArrayList<>();

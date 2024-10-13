@@ -86,6 +86,42 @@ public class Test {
         for (Restaurant restaurant : specialsMatch) {
             System.out.println(restaurant.toString());
         }
+        // Test sundayMatch
+        System.out.println("Test Sunday match");
+        for (Restaurant restaurant : restaurants.sundayMatch()) {
+            System.out.println(restaurant.getName());
+        }
+        // Test mondayMatch
+        System.out.println("Test Monday match");
+        for (Restaurant restaurant : restaurants.mondayMatch()) {
+            System.out.println(restaurant.getName());
+        }
+        // Test tuesdayMatch
+        System.out.println("Test Tuesday match");
+        for (Restaurant restaurant : restaurants.tuesdayMatch()) {
+            System.out.println(restaurant.getName());
+        }
+        // Test wednesdayMatch
+        System.out.println("Test Wednesday match");
+        for (Restaurant restaurant : restaurants.wednesdayMatch()) {
+            System.out.println(restaurant.getName());
+        }
+        // Test thursdayMatch
+        System.out.println("Test Thursday match");
+        for (Restaurant restaurant : restaurants.thursdayMatch()) {
+            System.out.println(restaurant.getName());
+        }
+        // Test fridayMatch
+        System.out.println("Test Friday match");
+        for (Restaurant restaurant : restaurants.fridayMatch()) {
+            System.out.println(restaurant.getName());
+        }
+        // Test saturdayMatch
+        System.out.println("Test Saturday match");
+        for (Restaurant restaurant : restaurants.saturdayMatch()) {
+            System.out.println(restaurant.getName());
+        }
+
         // Test toMilitary method
         System.out.println("Military time test");
         LocalTime time = restaurants.toMilitary("5:00 PM");
